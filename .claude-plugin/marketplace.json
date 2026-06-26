@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "skills-with-aura",
+  "owner": {
+    "name": "Anton Kogut",
+    "url": "https://github.com/acogood"
+  },
+  "metadata": {
+    "description": "Anton Kogut's collection of Claude Code skills, with aura.",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "content-writing",
+      "source": "content-writing",
+      "description": "Research audiences and write, enrich, and review LinkedIn & long-form content: audience profiling, style capture, idea extraction, story/quote enrichment, lookalike ideation, and a Lara Acosta-voiced LinkedIn reviewer.",
+      "version": "0.1.0",
+      "author": { "name": "Anton Kogut" },
+      "keywords": ["linkedin", "content", "writing", "copywriting", "audience-research"]
+    }
+  ]
+}
