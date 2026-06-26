@@ -1,0 +1,115 @@
+# Skills with Aura ✨
+
+A collection of [Claude Code](https://code.claude.com) **Agent Skills**, packaged as an
+installable plugin marketplace. The first plugin — **`content-writing`** — is a six-skill
+toolkit for researching an audience and then writing, enriching, and reviewing LinkedIn &
+long-form content.
+
+> Built and maintained by [Anton K](https://github.com/acogood). PRs and new skills welcome —
+> see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## Install
+
+In Claude Code:
+
+```text
+/plugin marketplace add acogood/skills_with_aura
+/plugin install content-writing@skills-with-aura
+```
+
+That's it — the six skills below become available and Claude will invoke them automatically
+when a task matches, or you can call any of them by name.
+
+To update later: `/plugin marketplace update skills-with-aura`.
+
+---
+
+## What's inside — `content-writing`
+
+| Skill | What it does |
+|---|---|
+| **`talking-point-extractor`** | Pulls post-ready angles from any source (transcript / article / doc) into 4 buckets: Educational, Spicy Take, Data Nugget, Story Spark. *The idea-extraction one.* |
+| **`post-enricher`** | Takes a talking point or draft and adds a story, case study, or authority quote — researches recent, **verifiable** proof rather than relying on training knowledge. *"add a story / find me an example / make this more compelling."* |
+| **`lara-acosta-reviewer`** | Reviews LinkedIn drafts (playbooks, posts, hooks) in Lara Acosta's voice using her real frameworks — Content Trifecta, Hook Formula, F-pattern, Self-Comments, and more. |
+| **`writing-style-analyzer`** | Reverse-engineers a creator's voice into a reusable **Style Card** (capture an existing voice / design a new one / model after someone you admire). |
+| **`lookalike-content`** | Analyzes a content dump → finds what's working → builds a **Winning Content Profile** → generates 10 lookalike ideas. |
+| **`content-audience-profiler`** | Builds a research-backed **content audience profile** that the other skills read from — *who* you're writing to. |
+
+### How they fit together
+
+A natural pipeline (each step is optional and works standalone):
+
+```
+content-audience-profiler  ─┐
+writing-style-analyzer     ─┤→  shared profile + style card
+                            │
+talking-point-extractor  →  post-enricher  →  lara-acosta-reviewer  →  publish
+lookalike-content        →  fresh content ideas grounded in what already works
+```
+
+---
+
+## Requirements
+
+- **Claude Code** with plugin support.
+- **Web research** — `post-enricher`, `writing-style-analyzer`, `lookalike-content`, and
+  `content-audience-profiler` do live research. They prefer MCP tools when present
+  (e.g. a Perplexity MCP) and fall back to the bundled Python helpers in
+  [`REMOVED_PATH/`](REMOVED_PATH), which read API keys
+  from environment variables:
+  - `REMOVED_ENV` — Perplexity research/quote-finding
+  - `REMOVED_ENV` — site / blog / profile scraping
+  - `REMOVED_ENV` — X/Twitter content pulls
+
+  Set the keys you have (an `.env` in your project works); skills degrade gracefully when a
+  source is unavailable.
+
+---
+
+## Where things are saved (`content-workspace/`)
+
+When a skill reads inputs or saves outputs, it uses a **`content-workspace/`** directory in
+your current project:
+
+```
+content-workspace/
+├── profiles/        ← audience profiles + writing style cards (shared across skills)
+├── samples/         ← drop writing samples here for writing-style-analyzer
+├── sources/         ← drop transcripts/articles here for talking-point-extractor
+├── talking-points/  ← extracted talking points
+├── content/         ← enrichments + content ideas
+└── data/            ← cleaned content dumps for lookalike-content
+```
+
+**Worked examples** ship inside the plugin at
+`plugins/content-writing/assets/examples/profiles/` — real audience profiles and creator
+style cards (Julian Shapiro, Katelyn Bourgoin, Amanda Natividad, and more) you can copy into
+`content-workspace/profiles/` as a starting point.
+
+---
+
+## Repo layout
+
+```
+skills_with_aura/                       ← marketplace root
+├── .claude-plugin/marketplace.json     ← the catalog Claude Code reads
+├── plugins/
+│   └── content-writing/
+│       ├── .claude-plugin/plugin.json
+│       ├── skills/                      ← the six skills (one folder each, SKILL.md inside)
+│       ├── scripts/                     ← shared Python research helpers
+│       └── assets/                      ← bundled reference material + worked examples
+├── README.md  CONTRIBUTING.md  LICENSE  NOTICE.md
+```
+
+Grounded in the official [plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces)
+and [plugins reference](https://code.claude.com/docs/en/plugins-reference) docs.
+
+---
+
+## License
+
+Code and skills in this repo are released under the [MIT License](LICENSE). **Bundled
+third-party reference material is *not* MIT-licensed** — see [NOTICE.md](NOTICE.md).
