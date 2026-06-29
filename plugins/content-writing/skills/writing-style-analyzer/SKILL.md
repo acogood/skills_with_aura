@@ -25,17 +25,17 @@ Style name: $ARGUMENTS
 
 ## Prerequisites
 
-This skill uses the same API keys as the Content Audience Profiler:
+No API keys required. Like the Content Audience Profiler, this skill researches with built-in tooling:
 
-| Variable | Service | Purpose |
-|---|---|---|
-| `FIRECRAWL_API_KEY` | [firecrawl.dev](https://www.firecrawl.dev) | Content scraping (Modes 1 & 3) |
-| `PERPLEXITY_API_KEY` | [perplexity.ai](https://perplexity.ai/settings/api) | Finding indexed content (Modes 1 & 3) |
-| `XAI_API_KEY` | [console.x.ai](https://console.x.ai) | X/Twitter content (Modes 1 & 3) |
+- **Reading pages** (the client's or a creator's blog, newsletter archive, profile) uses the
+  built-in `WebFetch` tool on named URLs.
+- **Finding indexed content** (LinkedIn/X posts, articles) uses the built-in `WebSearch` to find
+  sources, then `WebFetch` to read them — relying on the actual on-page wording, not a search snippet.
 
-Mode 2 does not require any API keys — it reads the existing audience profile and client website.
-
-Before starting, verify the required keys are available for the selected mode. If any are missing, tell the user which ones to set up.
+Built-in `WebFetch` reads a known URL but doesn't *crawl/discover* a site, so to gather many samples
+(Modes 1 & 3) fetch a blog/archive index, follow the post links it lists, and ask the user to paste
+or link specific posts when discovery falls short. Mode 2 needs no live lookups beyond the client
+website — it reads the existing audience profile.
 
 ## Workflow
 
@@ -137,17 +137,16 @@ The creator name and at least one content URL are required. Everything else is o
 
 ### Step 3: Gather Source Material
 
-This step varies by mode. Use the shared Python scripts for all API calls.
+This step varies by mode. Use the built-in research tooling below for all live lookups.
 
 **API Integration:**
 
-| Tool | Primary | Fallback |
-|---|---|---|
-| **Perplexity** | `perplexity_ask` MCP tool | `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "..."` |
-| **Firecrawl** | `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/firecrawl_scrape.py` (has domain/blog scraping logic) | — |
-| **xAI/Grok** | `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/xai_research.py --query "..."` | — |
+| Need | How |
+|---|---|
+| **Finding indexed content** (LinkedIn/X posts, articles) | Built-in `WebSearch` to find sources → `WebFetch` the top results to read them → confirm the wording on the page → cite real URLs |
+| **Reading a specific page** (blog, newsletter archive, profile) | Built-in `WebFetch` on the named URL |
 
-**CRITICAL — Use these exact scripts. Do NOT create new scripts or rename them.**
+**Use the built-in `WebSearch`/`WebFetch` tools, and confirm each sample's wording on its own source page before relying on it.** No API keys are required — the skill runs with zero keys. Built-in `WebFetch` reads a known URL but does not crawl/discover a site, so ask the user for specific links when sample discovery falls short. Do NOT create alternative research scripts.
 
 ---
 
@@ -155,65 +154,46 @@ This step varies by mode. Use the shared Python scripts for all API calls.
 
 Goal: gather 10-20 writing samples from the client's own content.
 
-**3a. Scrape client blog posts**
+**3a. Read client blog posts**
 
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/firecrawl_scrape.py --domain <client-domain> --blog-only
-```
+Use the built-in `WebFetch` tool. First fetch the blog/article index — try `/blog`, `/articles`,
+`/resources`, `/insights`, `/news` on the client domain. Read the list of post links the index
+returns, then `WebFetch` each individual post. Aim for the 10-15 most recent posts.
 
-The `--blog-only` flag tells the script to focus on blog/article pages rather than product pages. It looks for `/blog`, `/articles`, `/resources`, `/insights`, `/news` paths and follows links to individual posts. Aim for 10-15 most recent posts.
+`WebFetch` reads a known URL but doesn't discover pages, so if no standard blog index exists (some
+sites use unusual URL structures), ask the user for the blog URL or specific post links. Make sure
+you're reading authored content (posts/articles), not product/marketing copy.
 
-If the standard blog scraper doesn't find blog content (some sites use unusual URL structures), fall back to the general scraper:
+**3b. Gather LinkedIn posts (if URL provided)**
 
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/firecrawl_scrape.py --domain <client-domain>
-```
+Try `WebFetch` on the LinkedIn profile URL first. LinkedIn blocks most automated fetching, so if it
+returns an error or empty/minimal content, find indexed posts instead:
 
-Then manually identify which pages contain authored content vs. product/marketing copy.
+**Find indexed posts (`WebSearch` → `WebFetch`):**
+`WebSearch` for "[creator name] [company] LinkedIn posts" and `WebFetch` any publicly indexed posts
+it surfaces, reading the full text on the page. If it comes up thin (common — LinkedIn is hard to
+fetch), ask the user to paste a few representative posts. Use the actual on-page wording — don't
+reconstruct a post from a search snippet.
 
-**3b. Scrape LinkedIn profile (if URL provided)**
+**3c. Gather X/Twitter posts (if handle provided)**
 
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/firecrawl_scrape.py --url "<linkedin-profile-url>"
-```
+There's no API pull for X. Try, in order: `WebFetch` on specific post URLs the user provides;
+`WebSearch` for indexed posts (e.g. "[creator] X posts about [topic]") and `WebFetch` what it
+surfaces; or ask the user to paste 10-20 representative posts. X content is often not fetchable, so
+the pasted-sample route is usually the most reliable for capturing voice.
 
-LinkedIn blocks most scrapers. If Firecrawl returns an error or empty/minimal results, fall back to Perplexity:
+**3d. Read newsletter archive (if URL provided)**
 
-**Primary — MCP (`perplexity_ask`):**
-```
-Find recent LinkedIn posts written by [creator name] at [company]. Return the full text of their most notable LinkedIn posts. Focus on posts with high engagement.
-```
-
-**Fallback — script:**
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "Find recent LinkedIn posts written by [creator name] at [company]. Return the full text of their most notable LinkedIn posts. Focus on posts with high engagement."
-```
-
-**3c. Pull X/Twitter posts (if handle provided)**
-
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/xai_research.py --query "Show me the 20 most recent posts from @<handle>. Return the full text of each post, not summaries."
-```
-
-**3d. Scrape newsletter archive (if URL provided)**
-
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/firecrawl_scrape.py --url "<newsletter-archive-url>"
-```
-
-For Substack, the archive URL is typically `<publication>.substack.com/archive`. Scrape the archive page to get links to individual issues, then scrape 5-10 recent issues.
+Use `WebFetch` on the archive page. For Substack, the archive URL is typically
+`<publication>.substack.com/archive`. Fetch the archive page to get links to individual issues, then
+`WebFetch` 5-10 recent issues.
 
 **3e. Search for indexed content**
 
-**Primary — MCP (`perplexity_ask`):**
-```
-Find recent content, posts, and articles written by [creator name] at [company]. Return the full text or detailed summaries of their most notable pieces.
-```
-
-**Fallback — script:**
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "Find recent content, posts, and articles written by [creator name] at [company]. Return the full text or detailed summaries of their most notable pieces."
-```
+**Find indexed content (`WebSearch` → `WebFetch`):**
+`WebSearch` for "[creator name] [company] articles posts", then `WebFetch` the strongest results to
+read the full pieces on the page. Cite the source URLs, and rely on the wording you actually read —
+not a search snippet.
 
 **3f. Read samples from content-workspace/samples/**
 
@@ -254,13 +234,10 @@ Read the selected audience profile from `content-workspace/profiles/`. Extract:
 - Content triggers and anti-triggers (what resonates and what to avoid)
 - Trusted voices section (what kind of voice earns credibility with this audience)
 
-**3b. Scrape client website for brand signals**
+**3b. Read the client website for brand signals**
 
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/firecrawl_scrape.py --domain <client-domain>
-```
-
-Extract from the website:
+Use `WebFetch` on the client's homepage and a couple of positioning pages (`/about`, a product or
+solutions page). Extract from the website:
 - Brand voice signals — how do they currently present themselves? Formal/casual? Technical/accessible?
 - Company personality — are they the scrappy challenger, the established authority, the friendly guide?
 - Values and positioning — what do they stand for?
@@ -383,7 +360,7 @@ Present both files and provide a summary:
 
 **Client has no blog (Mode 1):** Lean on LinkedIn, X, newsletter, uploaded samples, and files from `content-workspace/samples/`. If total samples are still low, suggest Mode 2 or 3 instead.
 
-**LinkedIn scraping fails (Modes 1 & 3):** This is common — LinkedIn blocks scraping aggressively. Always fall back to Perplexity to search for indexed LinkedIn posts. If Perplexity also returns limited results, note in the delivery that LinkedIn samples are thin.
+**LinkedIn fetching fails (Modes 1 & 3):** This is common — LinkedIn blocks automated fetching aggressively. Use the built-in `WebSearch` to find indexed LinkedIn posts and `WebFetch` what it surfaces, or ask the user to paste a few. If samples are still limited, note in the delivery that LinkedIn samples are thin.
 
 **No audience profile exists (Modes 2 & 3):** Mode 2 requires an audience profile — offer to run the Content Audience Profiler first or switch modes. Mode 3 can work without an audience profile (just analyse the creator), but the adaptation step will be weaker.
 

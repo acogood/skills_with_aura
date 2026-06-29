@@ -24,15 +24,16 @@ $ARGUMENTS
 
 ## Prerequisites
 
-This skill requires three API keys set as environment variables (or in a `.env` file in the project root):
+No API keys required. This skill researches with two kinds of built-in tooling:
 
-| Variable | Service | Purpose |
-|---|---|---|
-| `FIRECRAWL_API_KEY` | [firecrawl.dev](https://firecrawl.dev) | Website and review page scraping |
-| `PERPLEXITY_API_KEY` | [perplexity.ai](https://perplexity.ai/settings/api) | Deep audience research |
-| `XAI_API_KEY` | [console.x.ai](https://console.x.ai) | X/Twitter audience language |
+- **Audience research** uses the built-in `WebSearch` to find sources, then `WebFetch` to read them —
+  verifying each cited claim on its own source page before using it.
+- **Reading specific pages** (the client's site, competitor sites, a G2 reviews page) uses the
+  built-in `WebFetch` tool on named URLs.
 
-Before starting, verify all three keys are available. If any are missing, tell the user which ones they need to set up and where to get them.
+Both work out of the box — nothing to configure. Built-in `WebFetch` reads a known URL but
+doesn't *crawl/discover* a whole site, so when page discovery matters (e.g. finding the right
+product or blog URLs), ask the user for the specific links.
 
 ## Inputs
 
@@ -59,96 +60,75 @@ Ask for the three required inputs. If the user provides them in their initial me
 
 This step requires no user input. Run all research in sequence.
 
-**2a. Scrape client website**
+**2a. Read the client website**
 
-Use the Firecrawl scraping script:
+Use the built-in `WebFetch` tool on the client's known pages. Start with the homepage, then fetch
+the common positioning pages that exist:
 
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/firecrawl_scrape.py --domain <client-domain>
-```
+- `https://<client-domain>/`
+- `https://<client-domain>/about`
+- `https://<client-domain>/product` (or `/features`, `/platform`, `/solutions`, `/use-cases`)
+- `https://<client-domain>/pricing`
 
-This attempts to scrape: homepage, /product, /features, /platform, /solutions, /use-cases, /pricing, /about. Pages that 404 are skipped. If the homepage has navigation links to product/feature pages with non-standard URLs, the script extracts and follows those too.
+Pages that 404 or redirect are skipped — just move on. `WebFetch` reads a known URL but doesn't
+discover pages, so if the homepage points to product/feature pages with non-standard URLs, fetch
+those URLs too; if you can't tell which pages matter, ask the user for the key links.
 
-Save the output — you'll need it for profile generation.
+Save what you read — you'll need it for profile generation.
 
 **2b. Identify competitors**
 
-**Primary method — Perplexity MCP tool:**
+**Research it (`WebSearch` → `WebFetch`):**
 
-Use the `perplexity_ask` MCP tool:
-```
-Who are the top 4-5 direct competitors to [company name] in [their category]? Return company names and domains only.
-```
-
-**Fallback — Python script (if MCP unavailable):**
-
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "Who are the top 4-5 direct competitors to [company name] in [their category]? Return company names and domains only."
-```
+`WebSearch` for "top competitors to [company name] in [their category]", then `WebFetch` the
+strongest result (a comparison roundup or category page) to confirm names and domains on the page.
 
 Present the competitor list to hold for the confirmation checkpoint (Step 3).
 
-**2c. Scrape competitor websites**
+**2c. Read competitor websites**
 
-Run Firecrawl on the top 2-3 competitor domains (same page pattern as 2a):
+Use `WebFetch` on the top 2-3 competitor domains (same page pattern as 2a — homepage, `/about`,
+product/features, `/pricing`).
 
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/firecrawl_scrape.py --domain <competitor-domain>
-```
+**2d. Read G2/Capterra reviews (if they exist)**
 
-**2d. Scrape G2/Capterra reviews (if they exist)**
+Use `WebFetch` on the reviews page, e.g. `https://www.g2.com/products/<product-name>/reviews`.
 
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/firecrawl_scrape.py --url "https://www.g2.com/products/<product-name>/reviews"
-```
+If the page 404s, blocks the fetch, or returns no review content, skip gracefully. Not every company has G2 reviews. Note in the final output which sections have thinner data because reviews weren't available.
 
-If the page 404s or returns no review content, skip gracefully. Not every company has G2 reviews. Note in the final output which sections have thinner data because reviews weren't available.
+**2e. Deep audience research — Research Call 1 (pain points & language)**
 
-**2e. Deep audience research — Perplexity Call 1 (pain points & language)**
+This call also carries the informal-vocabulary signal that used to come from a dedicated X/Twitter
+pull: explicitly ask about social platforms (X/Twitter), forums, Reddit, and community discussions
+so the profile captures how the audience actually talks, not just polished copy.
 
-**Primary — MCP (`perplexity_ask`):**
-```
-What are the biggest pain points and frustrations for [audience role] in [industry]? How do they describe these problems in their own words? What do they complain about in forums, Reddit, and community discussions? Include specific language and phrases they use. Cite sources.
-```
+**Research it (`WebSearch` → `WebFetch`):**
+`WebSearch` for the biggest pain points and frustrations of [audience role] in [industry] — how they
+describe these problems in their own words, and what they complain about on social platforms like
+X/Twitter, in forums, on Reddit, and in community discussions. Then `WebFetch` the top 1-3 results
+(Reddit threads, forum posts, community discussions) to read the actual language. Synthesize the pain
+points and capture the exact phrases, citing the source URLs with an access date. Confirm any quote or
+claim on its own page before using it, and prefer real community discussion over SEO listicles.
 
-**Fallback — script:**
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "What are the biggest pain points and frustrations for [audience role] in [industry]? How do they describe these problems in their own words? What do they complain about in forums, Reddit, and community discussions? Include specific language and phrases they use. Cite sources."
-```
+**2f. Deep audience research — Research Call 2 (content habits & identity)**
 
-**2f. Deep audience research — Perplexity Call 2 (content habits & identity)**
+**Research it (`WebSearch` → `WebFetch`):**
+`WebSearch` for what content [audience role] in [industry] consume — who they trust and follow; what
+publications, newsletters, podcasts, and communities they're active in; how they want to be perceived
+professionally; what success looks like to them. Then `WebFetch` the top 1-3 results to read them in
+full. Synthesize the content habits and trusted voices, citing the source URLs with an access date,
+and confirm each one on its page before using it.
 
-**Primary — MCP (`perplexity_ask`):**
-```
-What content does [audience role] in [industry] consume? Who do they trust and follow? What publications, newsletters, podcasts, and communities are they active in? How do they want to be perceived professionally? What does success look like to them? Cite sources.
-```
+**2g. LinkedIn audience research**
 
-**Fallback — script:**
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "What content does [audience role] in [industry] consume? Who do they trust and follow? What publications, newsletters, podcasts, and communities are they active in? How do they want to be perceived professionally? What does success look like to them? Cite sources."
-```
+LinkedIn blocks direct fetching. Find indexed LinkedIn content from the target audience:
 
-**2g. X/Twitter audience research — Grok**
+**Research it (`WebSearch` → `WebFetch`):**
+`WebSearch` for "[audience role] [industry] LinkedIn posts about [topic area]" and similar; `WebFetch`
+any publicly indexed posts the search surfaces to read the actual wording. Capture the language and
+engagement signals, citing the source URLs. LinkedIn content is often thin via search — note it if so.
 
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/xai_research.py --query "What are [audience role] in [industry] talking about on X/Twitter? What topics, frustrations, and conversations are getting engagement? What language and phrases do they use when discussing [topic area]? Who are the voices they engage with most?"
-```
-
-**2h. LinkedIn audience research — Perplexity**
-
-LinkedIn blocks direct scraping. Use Perplexity to find indexed LinkedIn content from the target audience:
-
-**Primary — MCP (`perplexity_ask`):**
-```
-Find recent LinkedIn posts and discussions by [audience role] in [industry] about [topic area]. What language do they use? What topics get the most engagement? What are they complaining about or celebrating? Include specific phrases and examples.
-```
-
-**Fallback — script:**
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "Find recent LinkedIn posts and discussions by [audience role] in [industry] about [topic area]. What language do they use? What topics get the most engagement? What are they complaining about or celebrating? Include specific phrases and examples."
-```
-
-**2i. Parse uploaded files (if any)**
+**2h. Parse uploaded files (if any)**
 
 If the user provided files, read them and extract audience-relevant signals: pain point language, objections, how the client talks about their customers, what questions prospects ask.
 
@@ -228,7 +208,7 @@ mkdir -p content-workspace/profiles
 
 Present both files to the user and provide a brief summary:
 - Which sections had the strongest research backing
-- Which sections are thinner (e.g., reviews weren't available, X data was sparse)
+- Which sections are thinner (e.g., reviews weren't available, social/community discussion was sparse)
 - Any areas where the user should apply their own judgment or provide additional input
 
 ## Edge Cases
@@ -239,18 +219,17 @@ Present both files to the user and provide a brief summary:
 
 **Very broad audience (e.g., "marketers"):** Push back gently before starting research. "Marketers" is too broad — a CMO and a junior social media manager have completely different content triggers. Ask the user to narrow to a specific role and seniority level.
 
-**Client website is thin or uninformative:** Some early-stage companies have minimal websites. Lean more heavily on Perplexity research and competitor analysis to build the profile. Note in the delivery that the profile is primarily research-based rather than grounded in the client's own positioning.
+**Client website is thin or uninformative:** Some early-stage companies have minimal websites. Lean more heavily on web research and competitor analysis to build the profile. Note in the delivery that the profile is primarily research-based rather than grounded in the client's own positioning.
 
-**API failures:** If any API call fails (Firecrawl timeout, Perplexity rate limit, Grok error), log the error, skip that step, and note it in the delivery summary. The profile can still be generated with partial data — just flag which sections are affected.
+**Research failures:** If a research step fails (a page won't fetch, a search returns nothing), re-run the `WebSearch` with different terms or `WebFetch` a different result where possible; otherwise skip the step and note it in the delivery summary. The profile can still be generated with partial data — just flag which sections are affected.
 
 **Multiple audiences:** One profile per run. If the client needs profiles for multiple audience segments, tell them to run the skill again with different audience descriptions. Each profile is saved as a separate file.
 
 ## API Integration Summary
 
-| Tool | Primary | Fallback |
-|---|---|---|
-| **Perplexity** | `perplexity_ask` MCP tool | `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "..."` |
-| **Firecrawl** | `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/firecrawl_scrape.py` (has domain/blog scraping logic) | — |
-| **xAI/Grok** | `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/xai_research.py --query "..."` | — |
+| Need | How |
+|---|---|
+| **Audience research** | Built-in `WebSearch` to find sources → `WebFetch` the top 1-3 to read them → verify each cited claim on its page → synthesize and cite real URLs with an access date |
+| **Reading a specific page** (client/competitor site, G2 reviews) | Built-in `WebFetch` on the named URL |
 
-**CRITICAL: Use the scripts listed above. Do NOT create alternative scripts.** They handle authentication, retries, and error handling.
+**Use the built-in `WebSearch`/`WebFetch` tools, and verify each cited claim on its own source page before using it.** No API keys are required — the skill runs with zero keys. Built-in `WebFetch` reads a known URL but does not crawl/discover a site, so ask the user for specific links when page discovery matters. Do NOT create alternative research scripts.

@@ -15,7 +15,7 @@ To make the skills portable (they previously assumed the origin repo's directory
 
 | Original | Rewritten to | Why |
 |---|---|---|
-| `kantent_podjehal/scripts/*.py` | `${CLAUDE_PLUGIN_ROOT}/scripts/*.py` | Helper scripts now ship with the plugin |
+| `kantent_podjehal/scripts/*.py` | `${CLAUDE_PLUGIN_ROOT}/scripts/*.py` *(removed in 0.3.0)* | Helper scripts were bundled during porting, then dropped in 0.3.0; research now prefers a Perplexity MCP and falls back to the built-in `WebSearch`/`WebFetch` tools (no API keys) |
 | `…/kantent_podjehal/content/<reviewer-reference>/…` (reviewer skill) | `${CLAUDE_PLUGIN_ROOT}/assets/…` *(removed in 0.2.0)* | Reviewer reference assets were bundled during porting, then dropped in 0.2.0; the reviewer now embeds its methodology in its SKILL.md |
 | `kantent_podjehal/<everything else>/` | `content-workspace/<…>/` | User inputs/outputs now live in a neutral working dir in the user's project |
 

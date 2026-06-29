@@ -42,7 +42,7 @@ The audience tier is critical. It determines which vocabulary register the entir
 **Sophistication level:** [Beginner / Intermediate / Advanced / Expert. One sentence explaining what this means for content — e.g., "Expert: use insider references without explanation; defining in-group terms signals outsider."]
 ```
 
-**Data sources:** Client website (who they say they serve), Perplexity research, competitor positioning.
+**Data sources:** Client website (who they say they serve), Web research, competitor positioning.
 
 ---
 
@@ -65,7 +65,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 **Social job:** [How they want to be seen — e.g., as the person who modernised the team, as pragmatic not trendy]
 ```
 
-**Data sources:** Client website (what outcomes they promise), Perplexity research (aspirations + fears), G2 reviews (what users actually want).
+**Data sources:** Client website (what outcomes they promise), Web research (aspirations + fears), G2 reviews (what users actually want).
 
 ---
 
@@ -98,7 +98,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 **Ranking criteria:** Frequency (how many mention it) × Severity (does it block decisions or just annoy?) × Addressability (can content actually help?). Frequency alone is misleading — pricing gets mentioned constantly but may not be the actual blocker.
 
-**Data sources:** G2/Capterra reviews (ABSA-style — which aspects score negative?), Perplexity research (community complaints), X/Grok (unfiltered frustration), uploaded sales docs (objections).
+**Data sources:** G2/Capterra reviews (ABSA-style — which aspects score negative?), Web research (community complaints), social/community discussion (unfiltered frustration), uploaded sales docs (objections).
 
 ---
 
@@ -130,7 +130,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 **Aim for 5-8 vocabulary pairs.** Focus on the concepts most likely to appear in content — pain points, solutions, outcomes, processes.
 
-**Data sources:** G2 reviews (end-user language), Perplexity research (how professionals frame it), X/Grok (informal language), competitor websites (what language the audience has been primed to expect), client website (the language gap between how the client talks and how the audience talks).
+**Data sources:** G2 reviews (end-user language), Web research (how professionals frame it), social/community discussion (informal language), competitor websites (what language the audience has been primed to expect), client website (the language gap between how the client talks and how the audience talks).
 
 ---
 
@@ -166,7 +166,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 **Important:** Include 5 hooks and rotate them rather than reusing one. Overuse of any single validation phrase leads to semantic satiation — it loses meaning through repetition.
 
-**Data sources:** G2 reviews (emotional language), Perplexity research (community frustrations), X/Grok (unfiltered emotional expression), uploaded sales transcripts (how prospects describe their situation).
+**Data sources:** G2 reviews (emotional language), Web research (community frustrations), social/community discussion (unfiltered emotional expression), uploaded sales transcripts (how prospects describe their situation).
 
 ---
 
@@ -205,7 +205,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 - [Anti-trigger 4]
 ```
 
-**Data sources:** Perplexity research (what content this audience engages with), X/Grok (what gets engagement vs ignored), competitor content analysis (what the market is saturated with), G2 reviews (what claims audiences distrust).
+**Data sources:** Web research (what content this audience engages with), social/community discussion (what gets engagement vs ignored), competitor content analysis (what the market is saturated with), G2 reviews (what claims audiences distrust).
 
 ---
 
@@ -230,7 +230,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 **Quality bar:** Each situation should be specific enough that someone in this audience thinks "that literally happened to me this week." Use specific tool names, specific moments (Monday morning, the vendor demo, the budget meeting), and specific emotional beats.
 
-**Data sources:** G2 reviews (specific scenarios mentioned), Perplexity research (common situations), X/Grok (what moments trigger posts), uploaded sales transcripts (how prospects describe their situation).
+**Data sources:** G2 reviews (specific scenarios mentioned), Web research (common situations), social/community discussion (what moments trigger posts), uploaded sales transcripts (how prospects describe their situation).
 
 ---
 
@@ -261,7 +261,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 - [Credibility killer 2]
 ```
 
-**Data sources:** Perplexity research (publications, influencers, communities), X/Grok (who gets engagement from this audience), competitor content (what proof types competitors use — is the audience primed for certain evidence formats?).
+**Data sources:** Web research (publications, influencers, communities), social/community discussion (who gets engagement from this audience), competitor content (what proof types competitors use — is the audience primed for certain evidence formats?).
 
 ---
 
@@ -296,7 +296,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 Only include platforms relevant to the client. If their primary platform is LinkedIn and they don't use X, keep the X section minimal or note "Not a priority platform for this audience."
 
-**Data sources:** Perplexity research (platform-specific engagement patterns), X/Grok (how the audience behaves on X specifically), competitor content (what formats competitors use on each platform).
+**Data sources:** Web research (platform-specific engagement patterns), social/community discussion (how the audience behaves on X specifically), competitor content (what formats competitors use on each platform).
 
 ---
 

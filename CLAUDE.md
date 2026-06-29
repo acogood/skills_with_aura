@@ -5,12 +5,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## What this repo is
 
 A **Claude Code plugin marketplace**, not an application. There is no build step, server, or test
-runner. The deliverable is a set of **Agent Skills** (markdown + a few Python helpers) that Claude
-Code loads and executes. "Running" the code means installing the plugin into Claude Code and
-prompting a skill into firing.
+runner. The deliverable is a set of **Agent Skills** (markdown instructions plus sibling reference
+files) that Claude Code loads and executes. "Running" the code means installing the plugin into
+Claude Code and prompting a skill into firing.
 
 The catalog is `.claude-plugin/marketplace.json` (`pluginRoot: ./plugins`). Today it ships one
-plugin, **`content-writing`** (`plugins/content-writing/`), a set of six independent content skills.
+plugin, **`content-writing`** (`plugins/content-writing/`), a set of seven independent content skills.
 
 ## Working in this repo
 
@@ -25,43 +25,49 @@ Then prompt with realistic phrases **and near-miss phrases that should NOT trigg
 `description` frontmatter is the entire triggering signal, so trigger reliability is the main thing
 to verify. The skill-creator skill has a trigger-eval loop for this (see PORTING-NOTES.md §4).
 
-The three Python research helpers in `plugins/content-writing/scripts/` are standalone CLIs
-(`requests` + optional `python-dotenv`), each reading one API key from the environment or a project
-`.env`:
-
-```bash
-python3 scripts/perplexity_research.py --query "..." [--model sonar-pro] [--output f.json]   # PERPLEXITY_API_KEY
-python3 scripts/firecrawl_scrape.py (--domain X | --url X) [--blog-only] [--max-posts N]      # FIRECRAWL_API_KEY
-python3 scripts/xai_research.py --query "..." [--model grok-3-latest]                         # XAI_API_KEY
-```
-
-All three print JSON to stdout (status/errors to stderr) and `sys.exit(1)` on missing key or API
-failure. Skills are written to degrade gracefully when a key/source is absent.
+Live research needs **no API keys and no scripts**. Each research skill uses Claude Code's built-in
+**`WebSearch`** (find sources) and **`WebFetch`** (read the top results, and read specific pages — a
+site, blog, or reviews page), and **verifies each cited claim on its own source page** before using
+it. Skills are written to degrade gracefully when a source is absent.
 
 ## Architecture
 
-### Two-path research (MCP-first, script-fallback)
+### Built-in web research (one path)
 
-Every skill that does live research prefers an **MCP tool** when present and falls back to the
-bundled Python script only when it isn't:
+Every skill that does live research uses Claude Code's **built-in web tools** — no MCP, no API keys,
+no scripts:
 
-| Source | Primary | Fallback |
-|---|---|---|
-| Perplexity | `perplexity_ask` MCP tool | `scripts/perplexity_research.py` |
-| Firecrawl | `scripts/firecrawl_scrape.py` | — |
-| xAI / Grok | `scripts/xai_research.py` | — |
+| Need | How |
+|---|---|
+| Audience / topic / quote research | `WebSearch` to find sources → `WebFetch` the top 1-3 to read them → verify each cited claim on its page → synthesize + cite real URLs with an access date |
+| Reading a specific page (site, blog, reviews) | `WebFetch` on the named URL |
 
-Each SKILL.md ends with an **"API Integration Summary"** stating this and a hard rule: **use the
-named scripts; do NOT create alternative scripts.** Honor that — the scripts centralize auth,
-retries, and error handling. When editing a skill's research step, route through these, don't inline
-new ones.
+`WebSearch` returns ranked links, not a synthesized answer, so the research step is a mini-procedure —
+*search → fetch the strongest results → read → verify → synthesize → cite real URLs* — not a
+one-liner; it keeps a "recent + verifiable" bar. `WebFetch` reads a known URL but does not
+crawl/discover a site, so skills fetch known pages and ask the user for specific links when discovery
+matters.
+
+**Source-verification discipline (backend-agnostic):** the web can fabricate too — SEO/AI-generated
+"case studies" with crisp fake percentages and no confirmable company. So every research step verifies
+each cited stat/quote on its own source page before using it, prefers primary or reputable sources
+over vendor/SEO blogs, and discards fabricated-looking claims. Each SKILL.md ends with an **"API
+Integration Summary"** stating this and the rule: **use the built-in `WebSearch`/`WebFetch` and verify
+each claim on its page — do NOT create alternative research scripts.** Honor that when editing a
+skill's research step.
+
+> **Power-user note (this file only — keep it out of the skills):** you *may* connect a Perplexity MCP
+> to discover candidate sources faster, but it can return confident, citation-shaped claims that don't
+> survive verification, so treat it as a discovery aid and still verify each claim on its real source
+> page. Two blind eval runs put Perplexity head-to-head against the built-in path; the built-in path
+> won both on verifiability, which is why the skills name only `WebSearch`/`WebFetch`.
 
 ### Path discipline (the core portability rule)
 
 Two namespaces, never mixed:
 
-- **`${CLAUDE_PLUGIN_ROOT}/…`** — read-only files that ship with the plugin (scripts, reference
-  corpora, templates, worked examples). Set by Claude Code to the install dir at runtime; **empty
+- **`${CLAUDE_PLUGIN_ROOT}/…`** — read-only files that ship with the plugin (reference corpora,
+  templates, worked examples). Set by Claude Code to the install dir at runtime; **empty
   if a skill runs from a bare `.claude/skills/` checkout**, so local testing must go through the
   marketplace install above.
 - **`content-workspace/…`** — all user inputs and generated outputs, created in the *user's* project
@@ -90,9 +96,10 @@ namespaced to avoid false matches — e.g. `lookalike-content` writes its winnin
 
 There is no fixed order and nothing auto-chains: each skill runs independently and the model (or
 the user) picks what runs when. `content-audience-profiler` and `writing-style-analyzer` produce the
-shared profile/style card the others can draw on; `talking-point-extractor`, `post-enricher`, and
-`lookalike-content` each stand alone; `linkedin-post-reviewer` reviews a draft directly (it uses no
-`content-workspace/`).
+shared profile/style card the others can draw on; `talking-point-extractor`, `post-enricher`,
+`linkedin-post-writer`, and `lookalike-content` each stand alone; `linkedin-post-writer` drafts a
+LinkedIn post from those upstream outputs into `content-workspace/content/drafts/`, and
+`linkedin-post-reviewer` reviews a draft directly (it uses no `content-workspace/`).
 
 ### Skill anatomy
 

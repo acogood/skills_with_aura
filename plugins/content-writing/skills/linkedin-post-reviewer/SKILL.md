@@ -258,8 +258,8 @@ one relevant example.
 
 ## What This Skill Never Does
 
-- Never writes new posts from scratch — that's `lookalike-content` / `talking-point-extractor` /
-  `post-enricher` territory.
+- Never writes new posts from scratch — that's `linkedin-post-writer` territory
+  (`talking-point-extractor` / `post-enricher` feed it upstream).
 - Never produces sycophantic feedback. If the draft is weak, say so — sardonic about the tell is fine,
   performative niceness is not.
 - Never imports another tool's banned-word list. Different surface, different rules.
