@@ -1,7 +1,7 @@
 {
   "name": "content-writing",
-  "version": "0.2.0",
-  "description": "Six skills for researching audiences and writing, enriching, and reviewing LinkedIn & long-form content.",
+  "version": "0.4.0",
+  "description": "Seven skills for researching audiences and then drafting, enriching, and reviewing LinkedIn & long-form content.",
   "author": { "name": "Anton Kogut", "url": "https://github.com/acogood" },
   "homepage": "https://github.com/acogood/skills_with_aura",
   "license": "MIT",

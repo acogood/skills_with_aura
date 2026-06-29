@@ -1,6 +1,6 @@
 ---
 name: post-enricher
-description: "Generate enrichment options (story, case study, authority quote) that elevate a talking point or draft post. Uses Perplexity to find recent, verifiable case studies and quotes. Use when the user wants to add a story to a post, find a relevant example or case study, add a quote from a credible source, make a post more compelling, or enrich content with proof and narrative. Also trigger on 'add a story', 'find me an example', 'make this more compelling', 'add credibility', 'enrich this post', or 'find a case study for this'. Not for writing a post from scratch — it adds proof or narrative to an existing point or draft."
+description: "Generate enrichment options (story, case study, authority quote) that elevate a talking point or draft post. Uses live web research to find recent, verifiable case studies and quotes. Use when the user wants to add a story to a post, find a relevant example or case study, add a quote from a credible source, make a post more compelling, or enrich content with proof and narrative. Also trigger on 'add a story', 'find me an example', 'make this more compelling', 'add credibility', 'enrich this post', or 'find a case study for this'. Not for writing a post from scratch — it adds proof or narrative to an existing point or draft."
 argument-hint: <talking-point or topic>
 ---
 
@@ -12,7 +12,7 @@ argument-hint: <talking-point or topic>
 
 This skill takes a talking point or draft post and generates three enrichment options that make the content more compelling, credible, and memorable. Each enrichment type serves a different purpose — the user picks the one (or combination) that best fits their post.
 
-The skill automatically reads the audience profile and writing style card from `content-workspace/profiles/` and can browse talking points from `content-workspace/talking-points/`. It uses Perplexity to research recent, verifiable case studies and quotes rather than relying solely on training knowledge.
+The skill automatically reads the audience profile and writing style card from `content-workspace/profiles/` and can browse talking points from `content-workspace/talking-points/`. It researches recent, verifiable case studies and quotes with the built-in `WebSearch`/`WebFetch` tools — finding sources, reading them, and verifying each claim on its page — rather than relying solely on training knowledge.
 
 ## Arguments
 
@@ -20,13 +20,9 @@ $ARGUMENTS
 
 ## Prerequisites
 
-### API Key
-
-| Variable | Purpose |
-|---|---|
-| `PERPLEXITY_API_KEY` | Finding recent case studies, examples, and verified quotes |
-
-This key should already be in your project root `.env` file from other skills.
+No API keys required. Research uses the built-in `WebSearch` + `WebFetch` tools — find sources, then
+read the strongest ones and verify each claim on its own page before using it. Works out of the box —
+nothing to configure.
 
 ## Inputs
 
@@ -118,17 +114,20 @@ A relevant story — historical, personal, or business — that makes the abstra
 
 A mini case study or real-world example that proves the point. Not a full deep dive — just enough to make the reader go "ok, that's real."
 
-**This is where Perplexity adds the most value.** Use it to find recent, verifiable examples rather than relying on training knowledge.
+**This is where live web research adds the most value.** Use it to find recent, verifiable examples rather than relying on training knowledge.
 
-**Primary — Perplexity MCP (`perplexity_ask`):**
-```
-Find a recent real-world example or case study about [topic]. Must include specific company or person name, specific numbers or outcomes, and be from the last 24 months. Cite the source.
-```
+**Research it (`WebSearch` → `WebFetch`):**
+`WebSearch` for a recent real-world example or case study about [topic] with a named company or
+person, specific numbers or outcomes, from the last 24 months. Then `WebFetch` the top 1-3 results to
+read them in full. Synthesize the example from what you actually read and cite the real source URL(s)
+with an access date. Hold the bar: a named company/person, a specific number or outcome, last 24
+months, verifiable — no unsourced claims.
 
-**Fallback — Python script (if MCP unavailable):**
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "Find a recent real-world example or case study about [topic]. Must include specific company or person name, specific numbers or outcomes, and be from the last 24 months. Cite the source."
-```
+**Verify before you use it:** confirm each stat or outcome on its own source page — don't trust a
+number you only saw in a search snippet. Prefer primary or reputable sources (the company's own
+report, a named publication) over vendor or SEO blogs. Discard fabricated-looking case studies —
+suspiciously crisp percentages, a company you can't confirm exists, or claims that appear only on
+content-marketing pages.
 
 **What makes a great case study enrichment:**
 - It's recent (ideally last 24 months) and verifiable
@@ -150,15 +149,14 @@ python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "Find a rec
 
 A quote from a respected figure that adds weight and credibility to the core argument.
 
-**Primary — Perplexity MCP (`perplexity_ask`):**
-```
-Find a verified quote from a respected [industry] leader about [topic]. Must be correctly attributed with source. Focus on people that [audience role] would respect and follow.
-```
+**Research it (`WebSearch` → `WebFetch`):**
+`WebSearch` for a verified quote from a respected [industry] leader about [topic], focusing on people
+that [audience role] would respect and follow. Then `WebFetch` the source page to confirm the exact
+wording and attribution before using it. Cite the source URL with an access date.
 
-**Fallback — Python script:**
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "Find a verified quote from a respected [industry] leader about [topic]. Must be correctly attributed with source. Focus on people that [audience role] would respect and follow."
-```
+**Verify before you use it:** confirm the exact wording and attribution on a real page — prefer a
+primary source (a transcript, the person's own post, a reputable publication) over a quote-aggregator
+site. If you can't confirm the wording on a real page, don't use the quote.
 
 If the audience profile has a "Trusted Voices" section, use those voices as a starting point for the search.
 
@@ -196,9 +194,9 @@ For each enrichment type, find the strongest option that directly maps to the co
 
 **Story:** Draw from Claude's knowledge of business, sports, science, and history. Prioritise lesser-known stories over cliches. If the audience profile mentions trusted voices or domains, prioritise stories from those domains.
 
-**Case Study:** Use Perplexity to search for recent, verifiable examples. If Perplexity returns weak results, fall back to Claude's training knowledge but flag that the example may not be current.
+**Case Study:** Use the built-in `WebSearch`/`WebFetch` tools to find recent, verifiable examples, and confirm each one on its source page. Only fall back to Claude's training knowledge if web research turns up nothing, and flag that the example may not be current.
 
-**Quote:** Use Perplexity to search for verified quotes from people the audience respects. Cross-reference with the audience profile's "Trusted Voices" section if available. If you can't verify the attribution, say so.
+**Quote:** Use the built-in `WebSearch`/`WebFetch` tools to find verified quotes from people the audience respects, confirming the wording on the source page. Cross-reference with the audience profile's "Trusted Voices" section if available. If you can't verify the attribution, say so.
 
 Don't force it — if one type doesn't have a strong option, say so honestly rather than producing a weak enrichment.
 
@@ -214,6 +212,7 @@ Before presenting, verify each enrichment:
 - [ ] Is it concise (within the word limits)?
 - [ ] Would this audience respect and recognise the source?
 - [ ] Is it verifiable and accurately attributed?
+- [ ] Did you open the source page and confirm the stat/quote there (not just trust a search snippet), and discard anything fabricated-looking — crisp fake percentages, an unconfirmable company?
 - [ ] Does it end with a clear connection back to the reader's situation?
 - [ ] Does it match the writing style card (if provided)?
 - [ ] Does it use vocabulary from the audience profile?
@@ -284,16 +283,15 @@ Present both files and ask the user which enrichment they want to use and whethe
 
 - **No strong story available:** Say so. "I couldn't find a story that directly maps to this argument. The case study is stronger for this one."
 - **Can't verify a quote:** Don't include unverified quotes. Say: "I found a quote attributed to [person] but can't verify the exact wording. Want me to search for a confirmed alternative?"
-- **Perplexity returns weak results:** Fall back to Claude's training knowledge. Flag that the example may not be current: "This example is from my training data — I'd recommend verifying it's still accurate."
+- **Research returns weak results:** Re-run the `WebSearch` with different terms and `WebFetch` a few more results before giving up. Only if the web genuinely comes up empty, fall back to Claude's training knowledge and flag it: "This example is from my training data — I'd recommend verifying it's still accurate."
 - **User provides a very rough idea:** Extract the core argument first, confirm it with the user, then generate enrichments.
 - **Talking point is already story-heavy:** Flag this and suggest the case study or quote instead.
 - **Multiple strong options for one type:** Present the best one in the main output, and mention: "I had a strong alternative story about [X] — want to see that one too?"
-- **No Perplexity API key and MCP unavailable:** Skip the research calls. Use Claude's training knowledge only. Note in the output that examples and quotes may not be the most recent available.
 
 ## API Integration Summary
 
-| Tool | Primary | Fallback |
-|---|---|---|
-| **Perplexity** | `perplexity_ask` MCP tool | `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "..."` |
+| Need | How |
+|---|---|
+| **Web research** | Built-in `WebSearch` to find sources → `WebFetch` the top 1-3 to read them → verify each cited claim on its page → synthesize and cite real URLs with an access date |
 
-**CRITICAL: Use the script listed above. Do NOT create alternative scripts.** The `perplexity_research.py` handles authentication, retries, and error handling.
+**Use the built-in `WebSearch`/`WebFetch` tools, and verify every cited stat/quote on its own source page before using it.** No API keys are required — the skill runs with zero keys. Do NOT create alternative research scripts.

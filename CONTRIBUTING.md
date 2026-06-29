@@ -38,11 +38,15 @@ Rules that keep triggering reliable (per Anthropic's skill-authoring guidance):
 
 Skills must not hardcode machine-specific paths. Use these conventions:
 
-- **Bundled files** (scripts, reference corpora, templates that ship with the plugin):
+- **Bundled files** (reference corpora, templates, HTML guides that ship with the plugin):
   reference them via `${CLAUDE_PLUGIN_ROOT}/…` — e.g.
-  `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py" --query "…"`.
+  `Read ${CLAUDE_PLUGIN_ROOT}/skills/<skill-name>/template.md`.
 - **User inputs & outputs** (profiles, sources, generated content): read/write under
   `content-workspace/…` in the user's project, never inside the plugin install dir.
+
+For **live web research**, don't bundle a key-reading script — use the built-in `WebSearch` /
+`WebFetch` tools, which need no API keys, and verify each cited claim on its own source page before
+using it.
 
 ## Register a new plugin
 

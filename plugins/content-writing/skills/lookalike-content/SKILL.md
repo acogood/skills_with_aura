@@ -23,11 +23,9 @@ One skill, one run, three phases:
 
 ## Prerequisites
 
-### API Key
-
-| Variable | Purpose |
-|---|---|
-| `PERPLEXITY_API_KEY` | Researching trending topics for content idea generation |
+No API keys required. The trending-topic research in Phase 3 uses the built-in `WebSearch` +
+`WebFetch` tools — find sources, then read the strongest ones and verify each claim on its own page
+before using it. Works out of the box — nothing to configure.
 
 ## Workflow
 
@@ -287,33 +285,22 @@ Now researching content ideas that match these patterns...
 
 ### Step 6: Research Trending Topics
 
-Use Perplexity to find trending topics in the client's space that could match the winning patterns.
+Use live web research to find trending topics in the client's space that could match the winning patterns.
 
-**Primary method — Perplexity MCP tool:**
+**Research it (`WebSearch` → `WebFetch`):**
 
-Use the `perplexity_ask` MCP tool with these queries:
+Run these two queries with `WebSearch`, then `WebFetch` the top 1-3 results for each to read them in
+full. Synthesize the trends and signals from what you actually read, and keep a list of the real
+source URLs (with an access date) so each "trending signal" in Step 8 is traceable.
 
-**Query 1:**
-```
-What are the most discussed and trending topics in [space/industry] right now? Focus on topics that [audience] cares about. What questions are people asking? What debates are happening? What new developments are generating conversation? Include specific examples and sources.
-```
+- `WebSearch`: "What are the most discussed and trending topics in [space/industry] right now? Focus on topics that [audience] cares about. What questions are people asking? What debates are happening? What new developments are generating conversation?"
+- `WebSearch`: "What's new and being discussed about [top winning topic cluster] in [space/industry]? What angles haven't been covered yet? What are practitioners frustrated about or excited about?"
 
-**Query 2** (focused on winning topic clusters):
-```
-What's new and being discussed about [top winning topic cluster] in [space/industry]? What angles haven't been covered yet? What are practitioners frustrated about or excited about? Include specific examples.
-```
+Hold the bar: recent, specific (named examples / real numbers), and tied to a citable URL.
 
-**Fallback — Python script (if MCP unavailable):**
-
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "What are the most discussed and trending topics in [space/industry] right now? Focus on topics that [audience] cares about. What questions are people asking? What debates are happening? What new developments are generating conversation? Include specific examples and sources."
-```
-
-```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/perplexity_research.py --query "What's new and being discussed about [top winning topic cluster] in [space/industry]? What angles haven't been covered yet? What are practitioners frustrated about or excited about? Include specific examples."
-```
-
-The script uses the same Perplexity Sonar Pro model with a system prompt optimised for content research. It returns JSON with the response text and citations.
+**Verify before you use it:** confirm each trend or stat on its own source page — don't trust a
+search snippet. Prefer primary or reputable sources over vendor/SEO blogs, and discard
+fabricated-looking claims (suspiciously crisp percentages, a "case study" with no confirmable company).
 
 ### Step 7: Filter Through Winning Patterns
 
@@ -379,7 +366,7 @@ Read the HTML styling guide bundled with this skill for the HTML version. The gu
 **Hook:** "[Draft opening line]"
 **Format:** [Narrative / How-to / Opinion / Data-driven]
 **Emotional register:** [e.g., Validation + curiosity]
-**Trending signal:** [What makes this timely — from the Perplexity research]
+**Trending signal:** [What makes this timely — from the web research]
 
 ---
 
@@ -426,7 +413,7 @@ If they pick 1, show the selected idea and suggest running `talking-point-extrac
 
 **Data dump format is unexpected:** If the file can't be parsed cleanly, ask the user to describe the format: "I'm having trouble parsing this file. Can you tell me: what separates one post from another? Which column has the post text? Which column has the engagement data?"
 
-**No Perplexity API key and MCP unavailable:** Skip the research phase. Generate ideas based solely on the winning patterns and Claude's knowledge. Note that ideas may not reflect the most current trends.
+**Web research unavailable:** Don't skip the research phase lightly — the built-in `WebSearch` + `WebFetch` tools need no API key, so Step 6 should normally run (find sources, read the top results, verify each claim on its page, keep citable URLs). Only if web research is genuinely unavailable should you generate ideas from the winning patterns and Claude's knowledge alone, and note that ideas may not reflect the most current trends.
 
 **Audience profile contradicts the data patterns:** Go with the data. The winning content profile is based on what actually worked, which may differ from what the audience profile predicted. Note the discrepancy.
 
@@ -441,8 +428,6 @@ If they pick 1, show the selected idea and suggest running `talking-point-extrac
 └── html-lookalike-ideas-guide.md            ← HTML styling for ideas output
 
 content-workspace/
-├── scripts/
-│   └── perplexity_research.py               ← fallback for trending topic research
 ├── data/                                    ← cleaned content data files (intermediate)
 │   ├── substack_2026-03-12.md
 │   ├── linkedin_2026-03-15.md
@@ -454,4 +439,4 @@ content-workspace/
         └── lookalike-ideas-YYYY-MM-DD-[platform].md
 ```
 
-**CRITICAL: Use the Perplexity MCP tool or the script listed above. Do NOT create alternative scripts.**
+**Use the built-in `WebSearch`/`WebFetch` tools, and verify each cited trend/stat on its own source page before using it.** No API keys are required. Do NOT create alternative research scripts.
