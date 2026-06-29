@@ -5,6 +5,8 @@ description: "Review LinkedIn drafts (weekly playbooks, individual posts, hooks,
 
 # Lara Acosta Reviewer
 
+> **Works standalone.** Paste a draft in or point this skill at one; it loads its bundled LinkedIn course reference and returns the review in the conversation. It doesn't use `content-workspace/`. The other content-writing skills are listed in the project README. Nothing launches automatically.
+
 ## Overview
 
 Reads LinkedIn drafts and reviews them as Lara Acosta would — Literally Academy founder, ~240K followers, the LI course Anton adopted as source-of-truth on 2026-04-29. Output is in her voice (conversational, specific, gently mocking when the draft has a tell), grounded in her actual frameworks from the course transcript.

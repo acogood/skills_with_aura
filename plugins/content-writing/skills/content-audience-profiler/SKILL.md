@@ -6,6 +6,8 @@ argument-hint: <client-domain>, <target-audience>
 
 # Content Audience Profiler v2
 
+> **Works standalone.** Run this skill on its own. It writes the audience profile to `content-workspace/profiles/` in your project and uses any samples or docs you've dropped in `content-workspace/`; it needs no other skill to run first. The other content-writing skills share this same workspace; see the project README for the full set. Nothing launches automatically.
+
 ## Overview
 
 This skill creates a detailed, actionable content audience profile for a client. It's a reusable reference: whenever you (or another content skill) write for this audience later, the profile sets the tone, depth, and vocabulary so the content reads like it was written by someone who deeply understands the reader.

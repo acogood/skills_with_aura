@@ -6,6 +6,8 @@ argument-hint: <source-description or file path>
 
 # Talking-Point Extractor
 
+> **Works standalone.** Run this skill on its own. It reads and writes under `content-workspace/` and uses anything useful already there (an audience profile in `content-workspace/profiles/`, or source files in `content-workspace/sources/`) — otherwise it asks you or proceeds without it. The other content-writing skills share this same workspace; see the project README for the full set. Nothing launches automatically.
+
 ## Overview
 
 This skill scans raw content (transcripts, articles, documents, or pasted text) and extracts structured talking points that can be turned into high-performing social posts. It groups findings into 4 categories, each with specific field requirements, and tailors everything to a target audience.

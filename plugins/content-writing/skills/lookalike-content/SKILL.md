@@ -6,6 +6,8 @@ argument-hint: <platform or content description>
 
 # Lookalike Content
 
+> **Works standalone.** Run this skill on its own. It reads and writes under `content-workspace/` and uses anything useful already there (an audience profile in `content-workspace/profiles/`) — otherwise it asks you or proceeds without it. The other content-writing skills share this same workspace; see the project README for the full set. Nothing launches automatically.
+
 ## Overview
 
 This skill takes a data dump of posts from any platform, analyses them for patterns in what makes the content successful, creates a winning content profile, then uses that profile to research and generate 10 content ideas that follow the same patterns.
