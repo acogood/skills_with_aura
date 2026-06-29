@@ -71,7 +71,7 @@ Include measurable norms:
 
 ## Hook Patterns
 
-4-6 recurring opening patterns. Describe the pattern — do not write example hooks. Downstream skills (like the hook creator) use these patterns to generate hooks in this style.
+4-6 recurring opening patterns. Describe the pattern — do not write example hooks. These patterns are later used to generate hooks in this style.
 
 - **[Pattern name]:** [1-sentence description of how this hook works — e.g., "Specific observation: Opens with a concrete, vivid detail from a real situation before broadening to the insight."]
 - **[Pattern name]:** [description]

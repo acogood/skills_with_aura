@@ -20,7 +20,7 @@ The design should feel like a modern internal strategy document — think Linear
 - Generous whitespace — let the content breathe
 - Clear visual hierarchy — the 10 sections should be easy to scan
 - Tables should be well-formatted and readable (the vocabulary library table is the centrepiece)
-- Validation hooks should stand out visually — they're used frequently by downstream skills
+- Validation hooks should stand out visually — they're used frequently
 - Subtle section dividers — not heavy horizontal rules
 - The profile metadata (client name, audience, platform, date) should be prominent at the top
 

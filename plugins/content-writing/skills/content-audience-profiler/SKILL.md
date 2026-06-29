@@ -1,6 +1,6 @@
 ---
 name: content-audience-profiler
-description: "Build a comprehensive, research-backed content audience profile by scraping a client's website, researching their audience across the web, and synthesising everything into a 10-section profile that downstream content skills read from. Use when the user wants to build an audience profile for CONTENT CREATION (not pipeline enrichment), understand their content audience, or define who they're writing for. Also trigger on 'audience profile', 'content persona', 'who are we writing for', 'audience research for content', or 'onboard a new client'. Do NOT trigger during AI CMO pipeline enrichment work."
+description: "Build a comprehensive, research-backed content audience profile by scraping a client's website, researching their audience across the web, and synthesising everything into a reusable 10-section audience profile. Use when the user wants to build an audience profile for CONTENT CREATION, understand their content audience, or define who they're writing for. Also trigger on 'audience profile', 'content persona', 'who are we writing for', 'audience research for content', or 'onboard a new client'. Do NOT trigger during AI CMO pipeline enrichment work."
 argument-hint: <client-domain>, <target-audience>
 ---
 
@@ -8,7 +8,7 @@ argument-hint: <client-domain>, <target-audience>
 
 ## Overview
 
-This skill creates a detailed, actionable content audience profile for a client. It's the foundational asset that every downstream content skill (hook creator, post drafter, newsletter writer, lookalike-content, post-enricher, etc.) reads from when generating content.
+This skill creates a detailed, actionable content audience profile for a client. It's a reusable reference: whenever you (or another content skill) write for this audience later, the profile sets the tone, depth, and vocabulary so the content reads like it was written by someone who deeply understands the reader.
 
 The profile answers: **what makes this audience stop scrolling, click, read, engage, and share?** It captures vocabulary, emotional register, pain points, situational framings, and platform-specific guidance — everything a content skill needs to write something that feels like it was written by someone who deeply understands the reader.
 
@@ -196,7 +196,7 @@ The profile template has 10 sections:
 - The vocabulary library is the highest-leverage section. Get this right.
 - Pain points must be ranked by evidence (frequency x severity), not by what feels important.
 - Validation hooks should be specific enough that a real person in this audience would think "that's exactly my situation."
-- Anti-triggers are as important as triggers — they're the guardrails that prevent downstream skills from producing tone-deaf content.
+- Anti-triggers are as important as triggers — they're the guardrails that prevent tone-deaf content built from this profile.
 
 ### Step 6: Generate the HTML Version
 

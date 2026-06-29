@@ -28,7 +28,7 @@ The audience tier is critical. It determines which vocabulary register the entir
 
 **What it captures:** Who they are, how they see themselves, how sophisticated they are.
 
-**Why it's here:** Every downstream skill reads this first to calibrate tone, depth, and specificity. The "how they see themselves" field drives what they'll share publicly (social JTBD). The sophistication level tells skills whether to explain concepts or use insider shorthand.
+**Why it's here:** Whatever writes from this profile reads this first to calibrate tone, depth, and specificity. The "how they see themselves" field drives what they'll share publicly (social JTBD). The sophistication level signals whether to explain concepts or use insider shorthand.
 
 **Template:**
 
@@ -50,7 +50,7 @@ The audience tier is critical. It determines which vocabulary register the entir
 
 **What it captures:** What outcome the audience is trying to achieve — functional, emotional, and social layers.
 
-**Why it's here:** Hook creators pull from the emotional/social jobs for resonant openers. Post drafters frame insights as serving the functional job. Content that addresses all three layers outperforms content that only hits the functional layer.
+**Why it's here:** Resonant openers pull from the emotional/social jobs; insights land best when framed as serving the functional job. Content that addresses all three layers outperforms content that only hits the functional layer.
 
 **Template:**
 
@@ -73,7 +73,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 **What it captures:** Top 3 pain points, ranked by evidence, with the audience's exact language for each.
 
-**Why it's here:** Content idea generators prioritise P1 topics. Hook creators reference the "how they describe it" phrases. The ranking prevents downstream skills from picking low-priority topics over high-priority ones.
+**Why it's here:** Content built from this profile should prioritise P1 topics and reference the "how they describe it" phrases. The ranking prevents low-priority topics from crowding out high-priority ones.
 
 **Template:**
 
@@ -106,7 +106,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 **What it captures:** Exact language mapping — what this audience says vs. what they don't say, plus in-group terms and outsider terms.
 
-**Why it's here:** This is the highest-leverage section. Communication Accommodation Theory shows that matching the reader's language creates automatic psychological closeness. Using the wrong tier's language (e.g., executive language for practitioners) creates immediate disengagement. Every downstream skill checks this table before generating output.
+**Why it's here:** This is the highest-leverage section. Communication Accommodation Theory shows that matching the reader's language creates automatic psychological closeness. Using the wrong tier's language (e.g., executive language for practitioners) creates immediate disengagement. Check this table before generating any output from this profile.
 
 **Template:**
 
@@ -138,7 +138,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 **What it captures:** The audience's default emotional state when consuming content, and ready-to-use validation phrases.
 
-**Why it's here:** The research is clear — jumping straight to advice without first validating the reader's experience triggers cognitive resistance. Validation must come before persuasion. These hooks give downstream skills ready-to-use openers that signal "I understand your situation" before pivoting to value.
+**Why it's here:** The research is clear — jumping straight to advice without first validating the reader's experience triggers cognitive resistance. Validation must come before persuasion. These hooks are ready-to-use openers that signal "I understand your situation" before pivoting to value.
 
 **Template:**
 
@@ -164,7 +164,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 **Validation hook quality bar:** A hook works if someone in this audience would read it and think "that's exactly my situation." If it's too generic to trigger that recognition, it's not specific enough.
 
-**Important:** Include 5 hooks and instruct downstream skills to rotate them. Overuse of any single validation phrase leads to semantic satiation — it loses meaning through repetition.
+**Important:** Include 5 hooks and rotate them rather than reusing one. Overuse of any single validation phrase leads to semantic satiation — it loses meaning through repetition.
 
 **Data sources:** G2 reviews (emotional language), Perplexity research (community frustrations), X/Grok (unfiltered emotional expression), uploaded sales transcripts (how prospects describe their situation).
 
@@ -174,7 +174,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 **What it captures:** What content pulls them in AND what makes them scroll past.
 
-**Why it's here:** The triggers guide content creation. The anti-triggers are equally important — they're the guardrails that prevent downstream skills from producing content that feels tone-deaf. Includes persuasion principle mapping by audience stage.
+**Why it's here:** The triggers guide content creation. The anti-triggers are equally important — they're the guardrails that prevent content that feels tone-deaf. Includes persuasion principle mapping by audience stage.
 
 **Template:**
 
@@ -213,7 +213,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 **What it captures:** 4 vivid, recognisable scenarios the audience is currently living through.
 
-**Why it's here:** These activate narrative transportation — when readers recognise their situation in the opening of a content piece, they shift into a mode where everything that follows feels personally relevant. Post drafters and hook creators use these as opening scenarios.
+**Why it's here:** These activate narrative transportation — when readers recognise their situation in the opening of a content piece, they shift into a mode where everything that follows feels personally relevant. Use these as opening scenarios.
 
 **Template:**
 
@@ -269,7 +269,7 @@ When [specific circumstance], I want to [functional goal], so I can [desired out
 
 **What it captures:** Format, voice, and engagement adjustments for each relevant platform.
 
-**Why it's here:** Each platform-specific content skill reads ONLY its relevant subsection. A LinkedIn post shouldn't read like a tweet. These notes capture the deviations from the base profile needed for each platform.
+**Why it's here:** When writing for a platform, read ONLY its relevant subsection. A LinkedIn post shouldn't read like a tweet. These notes capture the deviations from the base profile needed for each platform.
 
 **Template:**
 

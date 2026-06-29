@@ -8,7 +8,7 @@ argument-hint: <style-name>
 
 ## Overview
 
-This skill creates a Writing Style Card — a concise, reusable reference file that captures how content should be written. Downstream content skills (hook creator, post drafter, newsletter writer, etc.) read this file to write in the right voice.
+This skill creates a Writing Style Card — a concise, reusable reference file that captures how content should be written. Whenever you (or another content skill) write content later, this file sets the voice.
 
 The skill operates in three modes:
 - **Mode 1: Capture my style** — scrape the client's existing content and reverse-engineer their voice
