@@ -59,6 +59,11 @@ Combinations people reach for (examples, not a required flow):
   specific pages — a site, a blog, a reviews page). Each skill verifies every cited claim on its own
   source page before using it, holds a recent-specific-citable bar, and degrades gracefully when a
   source is unavailable.
+- **Source text is yours to provide.** The skills extract from text you already have (transcript,
+  article, doc). Built-in tools **can't reliably fetch a YouTube transcript**, so for a video source
+  paste YouTube's **Show transcript** panel or drop a captions file into `content-workspace/sources/` —
+  see [getting-a-transcript.md](plugins/content-writing/skills/talking-point-extractor/getting-a-transcript.md).
+  firecrawl / `yt-dlp` / a web MCP are optional shortcuts, never required.
 
 ---
 
