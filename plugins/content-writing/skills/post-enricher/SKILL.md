@@ -1,6 +1,6 @@
 ---
 name: post-enricher
-description: "Generate enrichment options (story, case study, authority quote) that elevate a talking point or draft post. Uses Perplexity to find recent, verifiable case studies and quotes. Use when the user wants to add a story to a post, find a relevant example or case study, add a quote from a credible source, make a post more compelling, or enrich content with proof and narrative. Also trigger on 'add a story', 'find me an example', 'make this more compelling', 'add credibility', 'enrich this post', or 'find a case study for this'. Do NOT trigger during AI CMO pipeline work."
+description: "Generate enrichment options (story, case study, authority quote) that elevate a talking point or draft post. Uses Perplexity to find recent, verifiable case studies and quotes. Use when the user wants to add a story to a post, find a relevant example or case study, add a quote from a credible source, make a post more compelling, or enrich content with proof and narrative. Also trigger on 'add a story', 'find me an example', 'make this more compelling', 'add credibility', 'enrich this post', or 'find a case study for this'. Not for writing a post from scratch — it adds proof or narrative to an existing point or draft."
 argument-hint: <talking-point or topic>
 ---
 

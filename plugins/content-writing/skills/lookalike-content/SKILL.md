@@ -1,6 +1,6 @@
 ---
 name: lookalike-content
-description: "Analyse a content dump to find patterns in what's working, create a Winning Content Profile, then generate 10 content ideas matching those patterns using research. Use when the user wants to find content patterns, analyse what's working, reverse-engineer successful posts, or generate lookalike content ideas. Do NOT trigger during AI CMO pipeline work."
+description: "Analyse a content dump to find patterns in what's working, create a Winning Content Profile, then generate 10 content ideas matching those patterns using research. Use when the user wants to find content patterns, analyse what's working, reverse-engineer successful posts, or generate lookalike content ideas. Not for reviewing a single draft — it studies a body of past posts and proposes new ideas."
 argument-hint: <platform or content description>
 ---
 

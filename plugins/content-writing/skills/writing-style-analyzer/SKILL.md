@@ -1,6 +1,6 @@
 ---
 name: writing-style-analyzer
-description: "Analyse writing samples and reverse-engineer a creator's style into a reusable Style Card, or construct a new style from an audience profile. Three modes: capture an existing style (scraping + samples), design a new style based on an audience profile, or model after a creator you admire. Use when the user wants to create a writing style card, capture a voice, analyse writing style, build a voice profile, design a content voice, or onboard a client's writing style. Also trigger on 'style card', 'writing style', 'capture this voice', 'what style should we write in', 'model after a creator', or 'create a voice for content'. Do NOT trigger during AI CMO pipeline work."
+description: "Analyse writing samples and reverse-engineer a creator's style into a reusable Style Card, or construct a new style from an audience profile. Three modes: capture an existing style (scraping + samples), design a new style based on an audience profile, or model after a creator you admire. Use when the user wants to create a writing style card, capture a voice, analyse writing style, build a voice profile, design a content voice, or onboard a client's writing style. Also trigger on 'style card', 'writing style', 'capture this voice', 'what style should we write in', 'model after a creator', or 'create a voice for content'. Not for audience research or drafting posts — it defines the voice to write in."
 argument-hint: <style-name>
 ---
 

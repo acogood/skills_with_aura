@@ -25,7 +25,7 @@ Use this skill when:
 - User asks for viral angles, social media hooks, or content ideas from source material
 - User wants to find the best insights in a piece of content for their audience
 
-**Do NOT use** during AI CMO pipeline analysis work (enrichment, think tanks, etc.).
+**Not for drafting finished posts** — it produces angles and talking points, not final copy.
 
 ## Inputs Required
 

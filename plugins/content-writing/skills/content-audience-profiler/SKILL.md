@@ -1,6 +1,6 @@
 ---
 name: content-audience-profiler
-description: "Build a comprehensive, research-backed content audience profile by scraping a client's website, researching their audience across the web, and synthesising everything into a reusable 10-section audience profile. Use when the user wants to build an audience profile for CONTENT CREATION, understand their content audience, or define who they're writing for. Also trigger on 'audience profile', 'content persona', 'who are we writing for', 'audience research for content', or 'onboard a new client'. Do NOT trigger during AI CMO pipeline enrichment work."
+description: "Build a comprehensive, research-backed content audience profile by scraping a client's website, researching their audience across the web, and synthesising everything into a reusable 10-section audience profile. Use when the user wants to build an audience profile for CONTENT CREATION, understand their content audience, or define who they're writing for. Also trigger on 'audience profile', 'content persona', 'who are we writing for', 'audience research for content', or 'onboard a new client'. Not for sales/ICP or go-to-market segmentation — this profiles the content audience you're writing for."
 argument-hint: <client-domain>, <target-audience>
 ---
 
