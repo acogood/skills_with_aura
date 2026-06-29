@@ -240,7 +240,9 @@ Read the clean `.md` file from `content-workspace/data/`.
 
 Synthesise the analysis into a structured profile document.
 
-**Save to:** `content-workspace/profiles/winning-content-profile-[platform].md` and `.html`
+**Save to:** `content-workspace/content/winning-content-dna-[platform].md` and `.html`
+
+(Saved under `content/`, not `profiles/`, and named `winning-content-dna-*` so it can't be mistaken for an audience profile by skills that scan `content-workspace/profiles/` for `profile` in the filename.)
 
 Read the winning content profile template bundled with this skill for the exact output format. The template file is `winning-content-profile-template.md` in the same directory as this SKILL.md.
 
@@ -274,7 +276,7 @@ Key findings:
   - Emotion: [dominant register]
   - Length: [sweet spot]
 
-Saved to: content-workspace/profiles/winning-content-profile-[platform].md
+Saved to: content-workspace/content/winning-content-dna-[platform].md
 
 Now researching content ideas that match these patterns...
 ```
@@ -359,7 +361,7 @@ Read the HTML styling guide bundled with this skill for the HTML version. The gu
 ## Based on: [N] posts analysed
 ## Space: [Industry/space used for research]
 ## Date: [Today's date]
-## Winning Content Profile: winning-content-profile-[platform].md
+## Winning Content DNA: winning-content-dna-[platform].md
 
 ---
 
@@ -404,7 +406,7 @@ Present both files and offer next steps:
 ```
 Done! Here are your 10 lookalike content ideas.
 
-  Winning Content Profile: content-workspace/profiles/winning-content-profile-[platform].md
+  Winning Content DNA: content-workspace/content/winning-content-dna-[platform].md
   Content Ideas: content-workspace/content/content-ideas/lookalike-ideas-YYYY-MM-DD-[platform].md
 
 Want to:
@@ -445,9 +447,9 @@ content-workspace/
 │   ├── substack_2026-03-12.md
 │   ├── linkedin_2026-03-15.md
 │   └── x_2026-03-20.md
-├── profiles/                                ← winning content profiles + audience profiles
-│   └── winning-content-profile-[platform].md
+├── profiles/                                ← audience profiles (read for research context)
 └── content/
+    ├── winning-content-dna-[platform].md    ← this skill's analysis output (not an audience profile)
     └── content-ideas/                       ← generated ideas output
         └── lookalike-ideas-YYYY-MM-DD-[platform].md
 ```
