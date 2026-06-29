@@ -101,5 +101,5 @@ At the bottom, a compact table listing all 10 ideas with columns:
 
 ## Filenames
 
-- Profile: `winning-content-profile-[platform].html` in `content-workspace/profiles/`
+- Winning content DNA: `winning-content-dna-[platform].html` in `content-workspace/content/`
 - Ideas: `lookalike-ideas-YYYY-MM-DD-[platform].html` in `content-workspace/content/content-ideas/`
