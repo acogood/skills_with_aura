@@ -408,13 +408,13 @@ Done! Here are your 10 lookalike content ideas.
   Content Ideas: content-workspace/content/content-ideas/lookalike-ideas-YYYY-MM-DD-[platform].md
 
 Want to:
-  1. Turn one of these ideas into a talking point (feeds into the content system)
+  1. Take an idea further — run `talking-point-extractor` on it yourself for post-ready talking points
   2. Generate more ideas
   3. Adjust the winning profile and regenerate
   4. Done for now
 ```
 
-If they pick 1, route to the Talking Point Extractor with the selected idea as input.
+If they pick 1, show the selected idea and suggest running `talking-point-extractor` on it next — they launch it themselves; this skill does not auto-run anything.
 
 ## Edge Cases
 
