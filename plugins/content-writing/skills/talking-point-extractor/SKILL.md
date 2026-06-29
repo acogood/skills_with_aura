@@ -34,15 +34,9 @@ The source material to extract from. Can be:
 - Pasted text directly in the chat
 - A file path provided by the user
 - Files in `content-workspace/sources/` (scan automatically)
-- **AI CMO workspace files** (primary workflow for promoting AI CMO):
-  - `ai-cmo-workspace/ai-cmo-saas/03-think-tanks/cro/positioning-report.md` — SSR-validated positioning (Spicy Takes, Educational)
-  - `ai-cmo-workspace/ai-cmo-saas/03-think-tanks/cro/value-props-report.md` — Tested value props (Data Nuggets, Educational)
-  - `ai-cmo-workspace/ai-cmo-saas/05-implementation/demand-generation/plan-*.md` — Tactic plans (Educational, Story Spark)
-  - `ai-cmo-workspace/ai-cmo-saas/05-implementation/demand-generation/research-*.md` — Market research (Data Nuggets)
-  - `ai-cmo-workspace/ai-cmo-saas/02-enrichment/competitors-analysis.md` — Competitor weaknesses (Spicy Takes)
-  - `ai-cmo-workspace/ai-cmo-saas/05-implementation/cro/homepage-copy.md` — Refined messaging (talking points)
+- Any document the user names — a report, blog post, meeting notes, or other working file in their project
 
-If the user mentions a workspace name other than `ai-cmo-saas`, substitute accordingly. If they reference a general topic (e.g., "positioning report"), look in the appropriate workspace path.
+If the user points at a file or pastes text, use that directly. If they name a topic without a path (e.g., "the positioning doc"), scan `content-workspace/sources/` and ask which file they mean when it's ambiguous.
 
 ### 2. Audience Profile (Recommended)
 An audience profile file that describes who the content is for. Check for existing profiles in `content-workspace/profiles/` and offer to use one if found.
@@ -55,7 +49,7 @@ If no audience profile is available, ask the user to describe their target audie
 
 1. **Read the raw content.**
    - If the user provided a file path, read that file
-   - If $ARGUMENTS references an AI CMO workspace file (e.g., "positioning report", "homepage copy"), resolve to the appropriate path and read it
+   - If $ARGUMENTS names a document without a full path (e.g., "the positioning doc"), check `content-workspace/sources/` and the user's project for a matching file
    - If the user pasted text, use it directly
    - If none of the above, scan `content-workspace/sources/` for files and list them for the user to pick
 2. **Read the audience profile.**
