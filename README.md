@@ -35,19 +35,17 @@ To update later: `/plugin marketplace update skills-with-aura`.
 | **`lara-acosta-reviewer`** | Reviews LinkedIn drafts (playbooks, posts, hooks) in Lara Acosta's voice using her real frameworks — Content Trifecta, Hook Formula, F-pattern, Self-Comments, and more. |
 | **`writing-style-analyzer`** | Reverse-engineers a creator's voice into a reusable **Style Card** (capture an existing voice / design a new one / model after someone you admire). |
 | **`lookalike-content`** | Analyzes a content dump → finds what's working → builds a **Winning Content Profile** → generates 10 lookalike ideas. |
-| **`content-audience-profiler`** | Builds a research-backed **content audience profile** that the other skills read from — *who* you're writing to. |
+| **`content-audience-profiler`** | Builds a research-backed **content audience profile** any other skill can draw on — *who* you're writing to. |
 
-### How they fit together
+### How they compose
 
-A natural pipeline (each step is optional and works standalone):
+These are six **independent** skills — there's no fixed order and nothing auto-runs. Launch any one on its own, or describe what you want and let Claude pick which to run first, next, and so on. They share a single `content-workspace/` directory (see below): each writes its output there and reads a sibling's output from there *if it's present and useful* — otherwise it asks you or proceeds without it.
 
-```
-content-audience-profiler  ─┐
-writing-style-analyzer     ─┤→  shared profile + style card
-                            │
-talking-point-extractor  →  post-enricher  →  lara-acosta-reviewer  →  publish
-lookalike-content        →  fresh content ideas grounded in what already works
-```
+Combinations people reach for (examples, not a required flow):
+
+- Profile the audience, then capture or design a voice — and write with both in hand.
+- Pull talking points from a source → enrich one with a story or stat → review the LinkedIn draft in Lara's voice.
+- Mine what's already working with `lookalike-content`, then take a resulting idea into `talking-point-extractor`.
 
 ---
 
@@ -79,7 +77,7 @@ content-workspace/
 ├── samples/         ← drop writing samples here for writing-style-analyzer
 ├── sources/         ← drop transcripts/articles here for talking-point-extractor
 ├── talking-points/  ← extracted talking points
-├── content/         ← enrichments + content ideas
+├── content/         ← enrichments, content ideas, winning-content DNA
 └── data/            ← cleaned content dumps for lookalike-content
 ```
 
