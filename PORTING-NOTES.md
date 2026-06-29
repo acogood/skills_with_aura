@@ -16,7 +16,7 @@ To make the skills portable (they previously assumed the origin repo's directory
 | Original | Rewritten to | Why |
 |---|---|---|
 | `kantent_podjehal/scripts/*.py` | `${CLAUDE_PLUGIN_ROOT}/scripts/*.py` | Helper scripts now ship with the plugin |
-| `…/kantent_podjehal/content/linkedin-comeback/…` (incl. absolute paths in `lara-acosta-reviewer`) | `${CLAUDE_PLUGIN_ROOT}/assets/linkedin-comeback/…` | Lara course + references bundled as read-only assets |
+| `…/kantent_podjehal/content/<reviewer-reference>/…` (reviewer skill) | `${CLAUDE_PLUGIN_ROOT}/assets/…` *(removed in 0.2.0)* | Reviewer reference assets were bundled during porting, then dropped in 0.2.0; the reviewer now embeds its methodology in its SKILL.md |
 | `kantent_podjehal/<everything else>/` | `content-workspace/<…>/` | User inputs/outputs now live in a neutral working dir in the user's project |
 
 `${CLAUDE_PLUGIN_ROOT}` is set by Claude Code to the plugin's install dir at runtime.

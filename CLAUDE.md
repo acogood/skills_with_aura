@@ -91,7 +91,7 @@ namespaced to avoid false matches — e.g. `lookalike-content` writes its winnin
 There is no fixed order and nothing auto-chains: each skill runs independently and the model (or
 the user) picks what runs when. `content-audience-profiler` and `writing-style-analyzer` produce the
 shared profile/style card the others can draw on; `talking-point-extractor`, `post-enricher`, and
-`lookalike-content` each stand alone; `lara-acosta-reviewer` reviews a draft directly (it uses no
+`lookalike-content` each stand alone; `linkedin-post-reviewer` reviews a draft directly (it uses no
 `content-workspace/`).
 
 ### Skill anatomy
@@ -101,9 +101,8 @@ Each skill is a folder under `plugins/content-writing/skills/<name>/` with a req
 sibling files (templates, HTML guides, references) that the body reads on demand. Skills that emit
 client-facing artifacts produce **both `.md` and `.html`** (single-file, inline-CSS, print-friendly).
 
-`lara-acosta-reviewer` is the outlier: it has no shared-profile dependency and instead lazy-loads a
-bundled course corpus under `assets/linkedin-comeback/` (read large transcripts in chunks via
-offset/limit), with the reviewer "voice card" encoded directly in its SKILL.md.
+`linkedin-post-reviewer` is the outlier: it has no shared-profile dependency and reads no bundled
+corpus — its full review methodology and voice card are embedded directly in its SKILL.md.
 
 ## Conventions when adding/editing skills
 
@@ -117,10 +116,11 @@ offset/limit), with the reviewer "voice card" encoded directly in its SKILL.md.
 
 ## Licensing constraint (do not ignore)
 
-Original skills/scripts are MIT (LICENSE). **Bundled third-party material is not.** In particular
-`plugins/content-writing/assets/linkedin-comeback/` contains paid, copyrighted Lara Acosta course
-material — **not redistributable**. Any newly bundled third-party reference must be recorded in
-NOTICE.md. See NOTICE.md and PORTING-NOTES.md before touching `assets/`.
+Original skills/scripts are MIT (LICENSE). **Bundled third-party material is not.** The remaining
+third-party-adjacent material is `plugins/content-writing/assets/examples/profiles/` — analytical
+*profiles of* real public creators, shipped as worked examples (about real people; treat as
+illustrative, not endorsements). Any newly bundled third-party reference must be recorded in NOTICE.md.
+See NOTICE.md and PORTING-NOTES.md before touching `assets/`.
 
 ## Known rough edges (from PORTING-NOTES.md)
 
