@@ -23,7 +23,7 @@ Test changes by installing the local checkout into Claude Code and exercising th
 
 Then prompt with realistic phrases **and near-miss phrases that should NOT trigger** — the
 `description` frontmatter is the entire triggering signal, so trigger reliability is the main thing
-to verify. The skill-creator skill has a trigger-eval loop for this (see PORTING-NOTES.md §4).
+to verify. The skill-creator skill has a trigger-eval loop for this.
 
 Live research needs **no API keys and no scripts**. Each research skill uses Claude Code's built-in
 **`WebSearch`** (find sources) and **`WebFetch`** (read the top results, and read specific pages — a
@@ -61,6 +61,22 @@ skill's research step.
 > survive verification, so treat it as a discovery aid and still verify each claim on its real source
 > page. Two blind eval runs put Perplexity head-to-head against the built-in path; the built-in path
 > won both on verifiability, which is why the skills name only `WebSearch`/`WebFetch`.
+
+### Source ingestion — transcripts are user-provided
+
+The skills extract from **source text that already exists**; nothing in the plugin fetches a YouTube
+transcript. Built-in `WebFetch`/`WebSearch` **can't reliably pull YouTube captions** — the watch page
+is JS-rendered (markdown conversion strips it to nav/footer), the caption endpoints need signed tokens,
+and the third-party transcript proxies block bots or are offline. So the portable, dependable path is **manual**:
+the user pastes YouTube's own "Show transcript" panel, or drops a captions file into
+`content-workspace/sources/`. The canonical how-to is
+`plugins/content-writing/skills/talking-point-extractor/getting-a-transcript.md`.
+
+> **Power-user note (this file only — keep it out of the skills' core path):** firecrawl, a web MCP, or
+> `yt-dlp` fetch transcripts more reliably, but they are **optional extra installs** (some paid) and must
+> never be assumed present — downstream users won't have them. Whatever the source, save it as text into
+> `content-workspace/sources/` so the rest of the pipeline is identical for everyone. Never fabricate a
+> transcript: if none can be obtained, give the user the manual steps and stop.
 
 ### Path discipline (the core portability rule)
 
@@ -127,9 +143,9 @@ Original skills/scripts are MIT (LICENSE). **Bundled third-party material is not
 third-party-adjacent material is `plugins/content-writing/assets/examples/profiles/` — analytical
 *profiles of* real public creators, shipped as worked examples (about real people; treat as
 illustrative, not endorsements). Any newly bundled third-party reference must be recorded in NOTICE.md.
-See NOTICE.md and PORTING-NOTES.md before touching `assets/`.
+See NOTICE.md before touching `assets/`.
 
-## Known rough edges (from PORTING-NOTES.md)
+## Known rough edge
 
 - Bundled example profiles live at `assets/examples/profiles/` but skills read from
   `content-workspace/profiles/` — a fresh user has none until they copy examples over.
