@@ -1,8 +1,8 @@
 # Skills with Aura ✨
 
 A collection of [Claude Code](https://code.claude.com) **Agent Skills**, packaged as an
-installable plugin marketplace. The first plugin — **`content-writing`** — is a six-skill
-toolkit for researching an audience and then writing, enriching, and reviewing LinkedIn &
+installable plugin marketplace. The first plugin — **`content-writing`** — is a seven-skill
+toolkit for researching an audience and then drafting, enriching, and reviewing LinkedIn &
 long-form content.
 
 > Built and maintained by [Anton K](https://github.com/acogood). PRs and new skills welcome —
@@ -19,7 +19,7 @@ In Claude Code:
 /plugin install content-writing@skills-with-aura
 ```
 
-That's it — the six skills below become available and Claude will invoke them automatically
+That's it — the seven skills below become available and Claude will invoke them automatically
 when a task matches, or you can call any of them by name.
 
 To update later: `/plugin marketplace update skills-with-aura`.
@@ -32,6 +32,7 @@ To update later: `/plugin marketplace update skills-with-aura`.
 |---|---|
 | **`talking-point-extractor`** | Pulls post-ready angles from any source (transcript / article / doc) into 4 buckets: Educational, Spicy Take, Data Nugget, Story Spark. *The idea-extraction one.* |
 | **`post-enricher`** | Takes a talking point or draft and adds a story, case study, or authority quote — researches recent, **verifiable** proof rather than relying on training knowledge. *"add a story / find me an example / make this more compelling."* |
+| **`linkedin-post-writer`** | Drafts a ready-to-post LinkedIn post in 2-3 hook/angle variants from your talking points + enrichment, matched to your audience profile and style card and written to the reviewer's rules. *The drafting step between enrichment and review.* |
 | **`linkedin-post-reviewer`** | Reviews LinkedIn drafts (weekly batches, single posts, or hooks) against an embedded best-practice checklist — hook discipline, scannable F-pattern formatting, posting cadence, content-mix balance — in a blunt, opinionated voice. |
 | **`writing-style-analyzer`** | Reverse-engineers a creator's voice into a reusable **Style Card** (capture an existing voice / design a new one / model after someone you admire). |
 | **`lookalike-content`** | Analyzes a content dump → finds what's working → builds a **Winning Content Profile** → generates 10 lookalike ideas. |
@@ -39,12 +40,12 @@ To update later: `/plugin marketplace update skills-with-aura`.
 
 ### How they compose
 
-These are six **independent** skills — there's no fixed order and nothing auto-runs. Launch any one on its own, or describe what you want and let Claude pick which to run first, next, and so on. They share a single `content-workspace/` directory (see below): each writes its output there and reads a sibling's output from there *if it's present and useful* — otherwise it asks you or proceeds without it.
+These are seven **independent** skills — there's no fixed order and nothing auto-runs. Launch any one on its own, or describe what you want and let Claude pick which to run first, next, and so on. They share a single `content-workspace/` directory (see below): each writes its output there and reads a sibling's output from there *if it's present and useful* — otherwise it asks you or proceeds without it.
 
 Combinations people reach for (examples, not a required flow):
 
 - Profile the audience, then capture or design a voice — and write with both in hand.
-- Pull talking points from a source → enrich one with a story or stat → review the LinkedIn draft before posting.
+- Pull talking points from a source → enrich one with a story or stat → draft the LinkedIn post → review it before posting.
 - Mine what's already working with `lookalike-content`, then take a resulting idea into `talking-point-extractor`.
 
 ---
@@ -52,16 +53,11 @@ Combinations people reach for (examples, not a required flow):
 ## Requirements
 
 - **Claude Code** with plugin support.
-- **Web research** — `post-enricher`, `writing-style-analyzer`, `lookalike-content`, and
-  `content-audience-profiler` do live research. They prefer MCP tools when present
-  (e.g. a Perplexity MCP) and fall back to the bundled Python helpers in
-  [`REMOVED_PATH/`](REMOVED_PATH), which read API keys
-  from environment variables:
-  - `REMOVED_ENV` — Perplexity research/quote-finding
-  - `REMOVED_ENV` — site / blog / profile scraping
-  - `REMOVED_ENV` — X/Twitter content pulls
-
-  Set the keys you have (an `.env` in your project works); skills degrade gracefully when a
+- **Web research — no API keys required.** `post-enricher`, `writing-style-analyzer`,
+  `lookalike-content`, and `content-audience-profiler` do live research with Claude Code's built-in
+  **`WebSearch`** (to find sources) and **`WebFetch`** (to read the strongest results and read
+  specific pages — a site, a blog, a reviews page). Each skill verifies every cited claim on its own
+  source page before using it, holds a recent-specific-citable bar, and degrades gracefully when a
   source is unavailable.
 
 ---
@@ -77,7 +73,7 @@ content-workspace/
 ├── samples/         ← drop writing samples here for writing-style-analyzer
 ├── sources/         ← drop transcripts/articles here for talking-point-extractor
 ├── talking-points/  ← extracted talking points
-├── content/         ← enrichments, content ideas, winning-content DNA
+├── content/         ← enrichments, drafts, content ideas, winning-content DNA
 └── data/            ← cleaned content dumps for lookalike-content
 ```
 
@@ -96,8 +92,7 @@ skills_with_aura/                       ← marketplace root
 ├── plugins/
 │   └── content-writing/
 │       ├── .claude-plugin/plugin.json
-│       ├── skills/                      ← the six skills (one folder each, SKILL.md inside)
-│       ├── scripts/                     ← shared Python research helpers
+│       ├── skills/                      ← the seven skills (one folder each, SKILL.md inside)
 │       └── assets/                      ← worked examples (audience profiles + style cards)
 ├── README.md  CONTRIBUTING.md  LICENSE  NOTICE.md
 ```
