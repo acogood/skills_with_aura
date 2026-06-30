@@ -140,8 +140,9 @@ the user knows why their card wasn't copied literally.
 
 Before drafting, pick the post **structures** that fit. Read `post-templates.md` in this skill's
 directory — it holds the template library (proven whole-post beat sequences) and the schema each
-template uses. Then run this three-part selection over the talking point, enrichment, and profile/style
-you gathered:
+template uses. The library is large, so use its **template index** to shortlist a handful of candidates
+by intent on a first pass, then run this three-part selection over the shortlist using the talking
+point, enrichment, and profile/style you gathered:
 
 **1. Score intent fit.** For each template, judge how well the talking point matches its "best for"
 intent signals — what the point is *trying to do* (answer a recurring question, name a trend that
