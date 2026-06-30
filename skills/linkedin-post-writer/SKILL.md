@@ -23,8 +23,9 @@ finished LinkedIn post. It is the **drafting** step that sits between `post-enri
 talking-point-extractor → post-enricher → linkedin-post-writer (you are here) → linkedin-post-reviewer
 ```
 
-One run produces **2-3 distinct hook/angle variants** of the same post, each a complete draft written
-to LinkedIn's best-practice rules so it passes review cleanly. It reads your audience profile for *who*
+One run produces **2-3 distinct variants of the same post, each built on a different proven post
+structure** (a template), every one a complete draft written to LinkedIn's best-practice rules so it
+passes review cleanly. It reads your audience profile for *who*
 you're writing to and your style card for *how* you sound, then composes posts that carry your voice
 while obeying the platform's structural rules.
 
@@ -135,18 +136,67 @@ the user knows why their card wasn't copied literally.
 
 **Length:** a tight LinkedIn post, not an essay. Most land between ~120 and ~250 words.
 
-## Producing 2-3 variants
+## Selecting templates
 
-Generate **2-3 variants of the same post that differ on hook and angle**, not reworded twins. Pick the
-axes from the material — common ones:
+Before drafting, pick the post **structures** that fit. Read `post-templates.md` in this skill's
+directory — it holds the template library (proven whole-post beat sequences) and the schema each
+template uses. Then run this three-part selection over the talking point, enrichment, and profile/style
+you gathered:
 
+**1. Score intent fit.** For each template, judge how well the talking point matches its "best for"
+intent signals — what the point is *trying to do* (answer a recurring question, name a trend that
+flipped, hand over a repeatable system). The talking point's category (Educational / Spicy Take / Data
+Nugget / Story Spark) and the post's intent **inform** the score and **break ties** — they never
+hard-map a category to a template, and they are not the gate.
+
+**2. Apply the proof-fit gate.** For each template, walk its proof-requirements checklist against the
+real material. A template **qualifies** only if every required item can be satisfied honestly from the
+talking point + enrichment. If a required beat would need an invented number, a fabricated result, or a
+quote nobody said, **disqualify** the template — do not write it. This gate is what keeps templates as
+scaffolds and preserves the never-invent-proof promise.
+
+**3. Rank and select.** Rank the qualifying templates by fit — intent-match strength plus proof
+completeness (how fully the material fills the beats). Take the **top 2–3**. Use category affinity to
+break ties; if more than three qualify, the top three by fit win.
+
+Carry the selected templates — and which were disqualified and why — into drafting. If fewer than 2–3
+qualify, the fallback in "Producing variants" below fills the remaining slots.
+
+## Producing variants
+
+**The variant axis is the template, not a reworded angle.** Each selected template produces **one
+complete post** — hook, body, ending, CTA — that walks that template's beats in the user's genuine voice
+and real proof. Two posts differ because they're built on different structures, not because the opener
+was reworded.
+
+**Label every variant** with its template name plus a one-line "why this template / what it needs" —
+what the structure optimises for, and the one thing the post leans on (or would be stronger with).
+Generic fallback posts are labeled as generic (see below).
+
+**Walk the beats, don't paste them.** A template's beats are structural intent. Hit them in order, but
+fill each with the user's voice and real material — never the worked example's words, never a beat filled
+with invented proof. A draft that reads as a copy-pasted scaffold fails the self-check (Step 4).
+
+**Reconcile beats with the hard rules.** Where a template beat collides with a LinkedIn hard rule, the
+**hard rule wins** and you state the trade in one line. The common case: a beat carrying a soft-sell
+("DM me", "grab my guide") collides with the specific-open-question CTA rule — convert it to a specific
+open question and note the swap. (Same precedent as "Reconciling style card vs. LinkedIn platform
+rules.")
+
+**Fallback when too few templates qualify** (from "Selecting templates"):
+- **1–2 qualify:** write the qualifying template-based posts, then fill the remaining slots (up to 2–3
+  total) with the generic-angle drafting below. **Label every variant** — template name vs. generic.
+- **None qualify:** draft generic-angle variants and add a one-line note that the proof is thin and the
+  post would be stronger after `post-enricher`.
+
+**Generic-angle drafting** (the labeled fallback — this was the only path before templates). Vary the
+hook and angle from the material; common axes:
 - **Data-led** — open on the most surprising number from the enrichment/talking point.
 - **Story-led** — open in a scene or a named person's moment, pay it off as the lesson.
 - **Contrarian take** — open by naming the consensus, then break it with evidence.
 
-If the chosen talking point already has a category (Educational / Spicy Take / Data Nugget / Story
-Spark), let that suggest one variant and contrast it with a second angle so the user has a real choice.
-Each variant is a *complete* post — hook, body, ending, CTA — not a fragment.
+The talking point's category (Educational / Spicy Take / Data Nugget / Story Spark) and intent inform
+which angle leads. Each variant — template-based or generic — is a *complete* post, never a fragment.
 
 ## Workflow
 
@@ -154,21 +204,35 @@ Each variant is a *complete* post — hook, body, ending, CTA — not a fragment
 Resolve the core material (Option A/B/C), then load enrichment, audience profile, and style card per
 the Inputs section. Identify the **single core argument**, the **proof** to weave in, and the **voice**.
 
-### Step 2 — Draft 2-3 variants
-Write each variant to the embedded rules, carrying the proof and the voice. Vary the hook/angle per
-variant. Pull stories/quotes/stats only from enrichment or the talking point — do not invent proof.
+### Step 2 — Select templates
+Read `post-templates.md` in this skill's directory and run the three-part selection (see "Selecting
+templates"): score each template on intent fit, apply the proof-fit gate, rank the qualifiers, and take
+the top 2–3. Note which templates were disqualified and why — that feeds the fallback and the labeling.
 
-### Step 3 — Self-check (rewrite before showing)
+### Step 3 — Draft one post per selected template
+Write **one complete post per selected template** (see "Producing variants"), walking each template's
+beats in the user's voice and real proof, to the embedded rules. Reconcile any beat that collides with a
+hard rule (hard rule wins; state the trade). If fewer than 2–3 templates qualified, fill the remaining
+slots with generic-angle drafts; if none qualified, draft generic-angle variants and note the thin proof
+(`post-enricher`). Label each variant — template name or generic. Pull stories/quotes/stats only from
+enrichment or the talking point — do not invent proof.
+
+### Step 4 — Self-check (rewrite before showing)
 Run the embedded rules over **every variant** and fix any failure before presenting:
 - [ ] Hook 8-10 words, two keywords, "how I"/number frame, curiosity gap, rehook on line 2?
 - [ ] Body F-pattern, ≤3 mobile lines, no italics, no hashtags, ≤1 emoji, no body links?
 - [ ] Power-ending closes the hook's loop? CTA is a specific open question (not "Agree?", not emoji vote)?
 - [ ] Voice matches the style card (within platform rules)? Vocabulary matches the audience profile?
 - [ ] Every stat/quote/example traces to enrichment or the talking point — nothing fabricated?
+- [ ] **Template fidelity** (template-based variants): the template's beats are present and in order,
+      filled with genuine voice and real proof — not the worked example's wording, not a copy-pasted
+      scaffold. Any beat that collided with a hard rule was reconciled (hard rule won) and the trade is
+      stated. Each variant is labeled (template name, or generic) with its one-line note.
 
-If any check fails, rewrite that variant. Do not present a draft that breaks a hard rule.
+If any check fails, rewrite that variant. Do not present a draft that breaks a hard rule or reads as a
+mad-libbed template.
 
-### Step 4 — Output and hand off
+### Step 5 — Output and hand off
 Save both formats (next section) and offer the reviewer handoff.
 
 ## Output
@@ -200,28 +264,28 @@ Read `draft-template.md` in this skill's directory for the exact markdown struct
 
 ---
 
-### Variant 1 — [angle label, e.g. "Data-led"]
+### Variant 1 — [template name, e.g. "Counterintuitive FAQ"]
 
-[Full post: hook line, rehook line, body in F-pattern, power-ending, specific-question CTA.]
+[Full post: hook line, rehook line, body in F-pattern, power-ending, specific-question CTA — walking the template's beats.]
 
-**Why this angle:** [one line]
+**Why this template / what it needs:** [one line — what the structure optimises for, and what the post leans on]
 **First-comment link (optional):** [if the post references a source worth linking]
 
 ---
 
-### Variant 2 — [angle label]
+### Variant 2 — [template name, or "Generic — [angle]" for a labeled fallback]
 
 [Full post]
 
-**Why this angle:** [one line]
+**Why this template / what it needs:** [one line]
 
 ---
 
-### Variant 3 — [angle label]   (optional third)
+### Variant 3 — [template name / generic]   (optional third)
 
 [Full post]
 
-**Why this angle:** [one line]
+**Why this template / what it needs:** [one line]
 ```
 
 After saving, present the drafts and offer next steps (the user launches the next step — nothing
@@ -274,7 +338,8 @@ If they pick 1, name the file path (or the chosen variant text) so they can hand
 ```
 .claude/skills/linkedin-post-writer/
 ├── SKILL.md                ← you are here
-├── draft-template.md       ← markdown output format (the 2-3 variants block)
+├── post-templates.md       ← template library (proven post structures) + selection schema (read)
+├── draft-template.md       ← markdown output format (the template-named variants block)
 └── html-draft-guide.md     ← HTML styling for the .html output
 
 content-workspace/
