@@ -69,6 +69,8 @@ These are the rules the review applies. They are general LinkedIn best practices
 | **Power ending + engage CTA** | The last line closes the loop the hook opened. The CTA is a specific open question — never "Agree?" / "Thoughts?". |
 | **Templates as scaffolds** | Reuse the structural bones of what works; change everything else. A copy-pasted template reads as a copy-pasted template. |
 
+> **Note:** Drafts from `linkedin-post-writer` may now be template-derived — apply the "templates as scaffolds" rule to check the structure was filled with genuine voice and proof, not copy-pasted.
+
 When a review needs to weigh depth-of-content choices, reason from the depth gradient above. When it
 touches images or carousels, reason from the visual-hook formats (tweet-style screenshots, personal
 selfie shots, on-stage shots, infographics, carousels) — note that carousels are a weaker, lower-priority
