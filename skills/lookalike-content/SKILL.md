@@ -6,7 +6,7 @@ argument-hint: <platform or content description>
 
 # Lookalike Content
 
-> **Works standalone.** Run this skill on its own. It reads and writes under `content-workspace/` and uses anything useful already there (an audience profile in `content-workspace/profiles/`) — otherwise it asks you or proceeds without it. The other content-writing skills share this same workspace; see the project README for the full set. Nothing launches automatically.
+> **Works standalone.** Run this skill on its own. It reads and writes under `content-workspace/` and uses anything useful already there (an audience profile in `content-workspace/profiles/`) — otherwise it asks you or proceeds without it. The other content skills share this same workspace; see the project README for the full set. Nothing launches automatically.
 
 ## Overview
 

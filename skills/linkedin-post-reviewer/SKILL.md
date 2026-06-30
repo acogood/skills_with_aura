@@ -8,7 +8,7 @@ argument-hint: <draft, hook, weekly batch, or a strategic question>
 
 > **Works standalone.** Paste a draft in or point this skill at a file; it reviews against its embedded
 > checklist and returns the critique in the conversation. It doesn't use `content-workspace/`. The other
-> content-writing skills share that workspace; see the project README for the full set. Nothing launches
+> content skills share that workspace; see the project README for the full set. Nothing launches
 > automatically.
 
 ## Overview

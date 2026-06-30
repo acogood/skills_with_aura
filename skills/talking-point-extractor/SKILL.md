@@ -6,7 +6,7 @@ argument-hint: <source-description or file path>
 
 # Talking-Point Extractor
 
-> **Works standalone.** Run this skill on its own. It reads and writes under `content-workspace/` and uses anything useful already there (an audience profile in `content-workspace/profiles/`, or source files in `content-workspace/sources/`) — otherwise it asks you or proceeds without it. The other content-writing skills share this same workspace; see the project README for the full set. Nothing launches automatically.
+> **Works standalone.** Run this skill on its own. It reads and writes under `content-workspace/` and uses anything useful already there (an audience profile in `content-workspace/profiles/`, or source files in `content-workspace/sources/`) — otherwise it asks you or proceeds without it. The other content skills share this same workspace; see the project README for the full set. Nothing launches automatically.
 
 ## Overview
 
@@ -40,6 +40,8 @@ The source material to extract from. Can be:
 
 If the user points at a file or pastes text, use that directly. If they name a topic without a path (e.g., "the positioning doc"), scan `content-workspace/sources/` and ask which file they mean when it's ambiguous.
 
+**The source must already be text — this skill does not fetch from the web.** If the user gives a YouTube link (or any video/podcast URL) and there's no matching transcript on disk, the transcript has to be brought in as text first. Built-in `WebFetch`/`WebSearch` can't reliably pull a YouTube transcript, so follow [getting-a-transcript.md](getting-a-transcript.md) — paste YouTube's own "Show transcript" panel, or drop a captions file into `content-workspace/sources/`. **Never claim to have fetched a transcript you didn't, and never invent one** — a fabricated transcript yields confident, wrong talking points.
+
 ### 2. Audience Profile (Recommended)
 An audience profile file that describes who the content is for. Check for existing profiles in `content-workspace/profiles/` and offer to use one if found.
 
@@ -53,6 +55,7 @@ If no audience profile is available, ask the user to describe their target audie
    - If the user provided a file path, read that file
    - If $ARGUMENTS names a document without a full path (e.g., "the positioning doc"), check `content-workspace/sources/` and the user's project for a matching file
    - If the user pasted text, use it directly
+   - If $ARGUMENTS is a YouTube/video/podcast URL and no matching transcript file exists in `content-workspace/sources/`, follow [getting-a-transcript.md](getting-a-transcript.md): optionally attempt the best-effort fetch, and if it fails (the common case), give the user the manual "Show transcript" steps and wait for the text. Do not extract from a guessed transcript.
    - If none of the above, scan `content-workspace/sources/` for files and list them for the user to pick
 2. **Read the audience profile.**
    - Check `content-workspace/profiles/` for existing audience profiles
@@ -224,6 +227,7 @@ Before finalizing, verify every talking point:
 
 ## Edge Cases
 
+- **User gives a YouTube/video link but no transcript:** This skill can't reliably fetch it with built-in tools. Follow [getting-a-transcript.md](getting-a-transcript.md) — try the best-effort fetch, and if it fails, give the user the manual "Show transcript" steps and wait for the pasted text. Never extract from a guessed or fabricated transcript.
 - **Short source (under 500 words):** Extract what's there. Don't pad with weak material. Note the limitation to the user.
 - **No audience profile and user doesn't describe one:** Default to general professional audience. Flag this in the output header and suggest providing an audience profile for better results.
 - **Highly technical source:** Translate jargon to match the audience's level of expertise.

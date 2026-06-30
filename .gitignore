@@ -21,3 +21,13 @@ Thumbs.db
 
 # Runtime working directory created by the skills in the user's project
 content-workspace/
+
+# Local-only — kept on disk, never shipped to GitHub.
+# (Personal Claude guidance, local plans, and the old plugin/packaging layers
+#  that were retired when this repo became a plain skills collection.)
+CLAUDE.md
+docs/
+plugins/
+.claude-plugin/
+NOTICE.md
+CONTRIBUTING.md
