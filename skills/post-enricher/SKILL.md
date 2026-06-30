@@ -6,7 +6,7 @@ argument-hint: <talking-point or topic>
 
 # Post Enricher v2
 
-> **Works standalone.** Run this skill on its own. It reads and writes under `content-workspace/` and uses anything useful already there (an audience profile and style card in `content-workspace/profiles/`, or talking points in `content-workspace/talking-points/`) — otherwise it asks you or proceeds without it. The other content-writing skills share this same workspace; see the project README for the full set. Nothing launches automatically.
+> **Works standalone.** Run this skill on its own. It reads and writes under `content-workspace/` and uses anything useful already there (an audience profile and style card in `content-workspace/profiles/`, or talking points in `content-workspace/talking-points/`) — otherwise it asks you or proceeds without it. The other content skills share this same workspace; see the project README for the full set. Nothing launches automatically.
 
 ## Overview
 

@@ -10,7 +10,7 @@ argument-hint: <topic, talking-point file, or pasted idea>
 > uses anything useful already there (talking points in `content-workspace/talking-points/`, enrichment
 > in `content-workspace/content/enrichments/`, an audience profile and style card in
 > `content-workspace/profiles/`) — otherwise it asks you or proceeds without it. The other
-> content-writing skills share this same workspace; see the project README for the full set. Nothing
+> content skills share this same workspace; see the project README for the full set. Nothing
 > launches automatically.
 
 ## Overview

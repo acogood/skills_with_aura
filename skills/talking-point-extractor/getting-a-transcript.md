@@ -1,7 +1,7 @@
 # Getting a transcript (default tools only)
 
 This skill extracts talking points from **source text that already exists** — a transcript, article,
-or doc. It does **not** fetch YouTube transcripts for you, and neither do the other content-writing
+or doc. It does **not** fetch YouTube transcripts for you, and neither do the other content
 skills. This file is the canonical how-to for getting a YouTube (or podcast) transcript into the
 pipeline using only Claude Code's built-in tools — no API keys, no MCP servers, no extra CLIs.
 
