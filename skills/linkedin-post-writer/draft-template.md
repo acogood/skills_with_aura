@@ -1,7 +1,8 @@
 # LinkedIn Post Draft Template
 
 Use this structure when generating the markdown drafts output. One run produces 2-3 complete variants
-of the same post that differ on hook and angle.
+of the same post, **each built on a different proven post structure (template)** — with labeled
+generic-angle drafts only as a fallback when too few templates qualify.
 
 ---
 
@@ -16,7 +17,7 @@ of the same post that differ on hook and angle.
 
 ---
 
-## Variant 1 — [angle label, e.g. "Data-led"]
+## Variant 1 — [template name, e.g. "Counterintuitive FAQ"]
 
 [Hook line — 8-10 words.]
 [Rehook line — below the "see more" cutoff.]
@@ -29,33 +30,35 @@ language. No italics, no hashtags, ≤1 emoji, no links in the body.]
 
 [CTA — a specific open question tied to the argument. Never "Agree?"/"Thoughts?", never an emoji vote.]
 
-**Why this angle:** [one line — what this hook/angle optimises for and who it lands with]
+**Why this template / what it needs:** [one line — what the structure optimises for and what the post leans on]
 **First-comment link (optional):** [source URL worth dropping in the first comment, if any]
 
 ---
 
-## Variant 2 — [angle label, e.g. "Story-led"]
+## Variant 2 — [template name, or "Generic — [angle]" for a labeled fallback]
 
-[Full post, same shape, different hook + angle]
+[Full post, same shape, built on a different template (or a labeled generic angle)]
 
-**Why this angle:** [one line]
+**Why this template / what it needs:** [one line]
 **First-comment link (optional):** [if any]
 
 ---
 
-## Variant 3 — [angle label, e.g. "Contrarian take"]   (optional — include when a third real angle exists)
+## Variant 3 — [template name, or "Generic — [angle]"]   (optional — include when a third variant exists)
 
 [Full post]
 
-**Why this angle:** [one line]
+**Why this template / what it needs:** [one line]
 ```
 
 ---
 
 ## Rules for Writing the Drafts
 
-**Variants must genuinely differ.** Different hook AND different angle (data-led vs. story-led vs.
-contrarian) — not the same post with three reworded openers. If only two real angles exist, ship two.
+**Variants differ by structure, not by reworded angle.** Each variant is built on a different template
+(its beat sequence) — the template *is* the axis. Generic-angle drafts (data-led / story-led /
+contrarian) appear only as a **labeled fallback** when fewer than 2–3 templates qualify. Label every
+variant with its template name (or "Generic — [angle]"). If only two real variants exist, ship two.
 
 **Every variant is complete.** Hook, rehook, body, power-ending, CTA. No fragments, no "and then make
 your point here" placeholders.
@@ -68,5 +71,6 @@ point to `post-enricher`.
 moves; obey the LinkedIn hard rules where they conflict (see SKILL.md "Reconciling style card vs.
 LinkedIn platform rules"). State the trade-off in one line when it happens.
 
-**Self-check before saving.** Run the embedded hard-rule checklist (SKILL.md Step 3) over every variant
-and rewrite any failure. A draft that breaks a hard rule is not ready to present.
+**Self-check before saving.** Run the embedded hard-rule checklist plus the template-fidelity gate
+(SKILL.md Step 4) over every variant and rewrite any failure. A draft that breaks a hard rule — or reads
+as a copy-pasted scaffold — is not ready to present.
