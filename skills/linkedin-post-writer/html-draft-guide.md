@@ -38,16 +38,18 @@ Default palette:
 - Topic as the main title
 - Core argument as a prominent subtitle
 - Audience / style / proof-source as muted metadata lines
-- A brief instruction: "Two to three angles on the same post. Pick one, or tell the writer to tighten one."
+- A brief instruction: "Two to three structures on the same post. Pick one, or tell the writer to tighten one."
 
 **Variant cards:**
 Each variant as a large card with:
-- **Angle label** as a coloured badge (e.g. "Data-led", "Story-led", "Contrarian")
+- **Template name** as a coloured badge (e.g. "Counterintuitive FAQ", "Old Way vs New Way") — plus a
+  small **template-vs-generic marker** (a "Template" or "Generic" tag) so a structured post is
+  distinguishable from a labeled generic fallback at a glance
 - **The post body** rendered as it would appear on LinkedIn:
   - The hook line larger and bold (it's the thing that earns the click)
   - Short stacked lines with real line breaks — preserve the F-pattern; do not collapse into one prose blob
   - At most one emoji; no hashtags; no inline links
-- **"Why this angle"** line — muted, at the bottom of the card
+- **"Why this template / what it needs"** line — muted, at the bottom of the card
 - **First-comment link** — if present, shown muted as "First comment: [url]"
 
 **Card styling:**
