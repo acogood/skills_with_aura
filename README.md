@@ -24,16 +24,19 @@ Run them in whatever order suits you; this is just the flow that tends to work. 
 output to your machine, and the later skills read those files.
 
 **Set up once — your voice & audience**
+
 1. **writing-style-analyzer** — feed it your best writing; it saves a reusable **Style Card**.
 2. **content-audience-profiler** — builds a research-backed **profile of who you're writing for**.
 
 **Per post**
+
 3. **talking-point-extractor** — turn a transcript, article, or notes into post-ready angles.
 4. **post-enricher** — add a story, example, or verifiable stat so a point actually lands.
 5. **linkedin-post-writer** — draft the post in 2–3 variants, matched to your Style Card + audience.
 6. **linkedin-post-reviewer** — a blunt, opinionated critique against what actually performs, before you publish.
 
 **Anytime**
+
 7. **lookalike-content** — mine a pile of winning posts for what's working and generate fresh lookalike ideas.
 
 ## Where your work is saved
