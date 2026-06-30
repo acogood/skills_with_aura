@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creator Style — Notion</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.7; padding: 40px 20px; }
+  .container { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 2rem; color: #fff; margin-bottom: 8px; }
+  .meta { color: #888; font-size: 0.9rem; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #222; }
+  .meta span { display: block; margin-bottom: 2px; }
+  h2 { font-size: 1.3rem; color: #fff; margin-top: 48px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #222; }
+  .intro { background: #111; border-left: 3px solid #6366f1; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 32px; }
+  .intro p { margin-bottom: 8px; }
+  .intro p:last-child { margin-bottom: 0; }
+  .intro strong { color: #a5b4fc; }
+  .intro .not { color: #f87171; font-weight: 600; }
+  .boundary { background: #0f1524; border: 1px solid #1e2d4a; border-radius: 6px; padding: 12px 16px; margin-top: 12px; font-size: 0.9rem; color: #93c5fd; }
+  .voice-sentence { background: #111; border-radius: 8px; padding: 24px; font-size: 1.15rem; color: #e2e8f0; border: 1px solid #1a1a1a; font-style: italic; text-align: center; }
+  .trait { background: #111; border-radius: 8px; padding: 20px; margin-bottom: 12px; border: 1px solid #1a1a1a; }
+  .trait .trait-name { color: #c4b5fd; font-weight: 700; margin-bottom: 4px; }
+  .trait .trait-desc { color: #bbb; }
+  .field { margin-bottom: 24px; }
+  .field-label { font-weight: 600; color: #c4b5fd; margin-bottom: 6px; }
+  .field-content { color: #ccc; padding: 4px 0; }
+  .field-content ul { padding-left: 20px; margin-top: 6px; }
+  .field-content li { margin-bottom: 6px; }
+  .section-tag { display: inline-block; background: #1e1b4b; color: #a5b4fc; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px; }
+  .col { background: #111; border-radius: 8px; padding: 20px; }
+  .col h3 { font-size: 1rem; margin-bottom: 12px; }
+  .col.always h3 { color: #4ade80; }
+  .col.never h3 { color: #f87171; }
+  .col ul { padding-left: 18px; }
+  .col li { margin-bottom: 8px; font-size: 0.93rem; color: #bbb; }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; margin-bottom: 20px; }
+  th { text-align: left; padding: 10px 12px; background: #151520; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #222; }
+  th:first-child { color: #4ade80; }
+  th:last-child { color: #f87171; }
+  td { padding: 12px; border-bottom: 1px solid #1a1a1a; color: #ccc; font-size: 0.9rem; font-style: italic; }
+  tr:hover td { background: #111; }
+  .footer-note { margin-top: 48px; padding-top: 24px; border-top: 1px solid #222; color: #555; font-size: 0.85rem; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Creator Style</h1>
+  <div class="meta">
+    <span><strong>Last updated:</strong> 2026-04-01</span>
+    <span><strong>Company/Brand:</strong> Notion</span>
+    <span><strong>Author:</strong> [Marketing Team]</span>
+  </div>
+
+  <div class="intro">
+    <p>This is <span class="not">NOT</span> a brand guidelines PDF. Not an aspirational tone doc. Not a list of adjectives picked in a workshop.</p>
+    <p>This file captures how Notion actually sounds — extracted from real content across blog, social, product pages, and campaigns. When a skill reads this file, it writes like Notion, not like a generic SaaS company.</p>
+    <p><strong>Which skills use this file:</strong> Any skill that writes — blog posts, social copy, emails, landing pages, ad copy, product announcements.</p>
+    <div class="boundary"><strong>Boundary:</strong> This file defines HOW Notion sounds. For WHO we're talking to, see <code>audience-delight.md</code>. For WHAT position we take, see <code>market-positioning.md</code>.</div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2>1. Voice in One Sentence</h2>
+  <span class="section-tag">The atomic unit</span>
+
+  <div class="voice-sentence">
+    An empowering, human voice that treats users as capable builders — conversational and clear without being dumbed down, playful without being flippant, and always permission-giving rather than prescriptive.
+  </div>
+
+  <!-- SECTION 2 -->
+  <h2>2. Tone Characteristics</h2>
+  <span class="section-tag">The 5 defining traits</span>
+
+  <div class="trait">
+    <div class="trait-name">1. Permission-giving, not prescriptive</div>
+    <div class="trait-desc">"Here's what's possible" not "here's how you should work." We show options and trust users to decide. We never impose a methodology. This is the single most important trait — it mirrors the product itself.</div>
+  </div>
+
+  <div class="trait">
+    <div class="trait-name">2. Conversational, not corporate</div>
+    <div class="trait-desc">We use "you" directly. Contractions are standard. We write like a smart colleague explaining something, not like a brand talking at an audience. No marketing-speak, no jargon walls.</div>
+  </div>
+
+  <div class="trait">
+    <div class="trait-name">3. Empowering, not patronizing</div>
+    <div class="trait-desc">We assume competence. We don't explain obvious things or over-qualify statements. The reader is a capable person who wants better tools, not a student who needs hand-holding.</div>
+  </div>
+
+  <div class="trait">
+    <div class="trait-name">4. Playful, not silly</div>
+    <div class="trait-desc">We have personality — wit, warmth, occasional humor. But we never sacrifice clarity for a joke. The playfulness shows up in word choice and rhythm, not in forced quips.</div>
+  </div>
+
+  <div class="trait">
+    <div class="trait-name">5. Direct, not verbose</div>
+    <div class="trait-desc">Say it in fewer words. Every sentence earns its place. If a paragraph can be a sentence, make it a sentence. Notion's product is about reducing clutter — the writing should feel the same way.</div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <h2>3. Writing Patterns</h2>
+  <span class="section-tag">Structure & rhythm</span>
+
+  <div class="field">
+    <div class="field-label">Sentence structure:</div>
+    <div class="field-content">Short sentences lead. Longer sentences follow to explain. Fragments are welcome when they add punch. The rhythm alternates — staccato then flow, staccato then flow. Never more than 3 sentences in a paragraph on social. Blog can go to 4-5 but keeps paragraphs visually light.</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Formatting habits:</div>
+    <div class="field-content">
+      <ul>
+        <li>Headlines are clear and benefit-driven, not clever for clever's sake</li>
+        <li>Heavy use of subheadings for scannability — readers skim first, read second</li>
+        <li>Bullet points for lists of 3+ items — never buried in a paragraph</li>
+        <li>Bold for key terms and concepts on first mention</li>
+        <li>Screenshots and visuals inline with text, not separated into galleries</li>
+        <li>White space is a feature, not wasted space</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Opening pattern:</div>
+    <div class="field-content">Lead with what the user can do, not what we built. Best openings start with a benefit or a tension the reader recognizes. "Your workspace should adapt to how you work, not the other way around." Not: "We're excited to announce a new feature."</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Closing pattern:</div>
+    <div class="field-content">End with a clear next action — try it, duplicate the template, explore the feature. No "in conclusion" summaries. The closing should make the reader want to open Notion immediately.</div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <h2>4. Always Do / Never Do</h2>
+  <span class="section-tag">Non-negotiable rules</span>
+
+  <div class="two-col">
+    <div class="col always">
+      <h3>Always</h3>
+      <ul>
+        <li>Lead with the user's outcome, not our feature</li>
+        <li>Show real workspaces and real use cases — never stock setups</li>
+        <li>Acknowledge that power can be intimidating — then make it approachable</li>
+        <li>Use "you" and "your" — this is about them, not us</li>
+        <li>Include something actionable — a template, a setup, a feature to try</li>
+        <li>Show multiple use cases for the same feature — reinforce flexibility</li>
+      </ul>
+    </div>
+    <div class="col never">
+      <h3>Never</h3>
+      <ul>
+        <li>Enterprise jargon — "streamline workflows," "drive alignment," "unlock productivity"</li>
+        <li>Be prescriptive — "the best way to use Notion is..." violates the core brand promise</li>
+        <li>Announce features without showing what they enable</li>
+        <li>Talk down to users or over-explain basics</li>
+        <li>Use fear or scarcity tactics</li>
+        <li>Sound interchangeable — if you can swap "Notion" for "Asana" and the copy works, it's wrong</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <h2>5. Sounds Like Us vs. Doesn't Sound Like Us</h2>
+  <span class="section-tag">Calibration examples</span>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Sounds like Notion</th>
+        <th>Doesn't sound like Notion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>"Your workspace should adapt to how you work, not the other way around."</td>
+        <td>"Our platform provides a streamlined solution for team collaboration."</td>
+      </tr>
+      <tr>
+        <td>"Build your own CRM. Or a wiki. Or a project tracker. Or all three."</td>
+        <td>"Notion offers comprehensive project management capabilities."</td>
+      </tr>
+      <tr>
+        <td>"One workspace. Less tab chaos."</td>
+        <td>"Consolidate your technology stack with our all-in-one solution."</td>
+      </tr>
+      <tr>
+        <td>"Here's a template. Duplicate it. Make it yours."</td>
+        <td>"Download our preconfigured workflow to optimize your processes."</td>
+      </tr>
+      <tr>
+        <td>"We built the tools. You decide how to use them."</td>
+        <td>"Notion empowers teams to unlock their full productivity potential."</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-note">
+    This file is read by Claude Code skills. It defines HOW Notion sounds. For WHO we're talking to, see <code>audience-delight.md</code>.
+  </div>
+
+</div>
+</body>
+</html>
