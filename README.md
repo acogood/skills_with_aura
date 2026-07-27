@@ -1,5 +1,7 @@
 # Skills with Aura ✨
 
+**English** · [Русский](README.ru.md)
+
 A small set of [Claude Code](https://code.claude.com) skills for marketers and content people:
 research your audience, capture your voice, then turn raw material into LinkedIn (and long-form)
 posts — drafted, enriched, and reviewed. No API keys, no setup beyond Claude Code.
@@ -35,6 +37,9 @@ output to your machine, and the later skills read those files.
 5. **post-enricher** — add a story, example, or verifiable stat so a point actually lands.
 6. **linkedin-post-writer** — draft the post in 2–3 variants, matched to your Style Card + audience.
 7. **linkedin-post-reviewer** — a blunt, opinionated critique against what actually performs, before you publish.
+
+   **Make it yours before you publish.** Don't ship AI slop — read the post end to end and rewrite the flat parts in your own voice: keep your punchy hooks (they drive the reach), cut the AI tells. For an extra pass, the external **[humanizer](https://github.com/blader/humanizer)** skill (`npx skills add blader/humanizer`) strips signs of AI writing — run it *partially*, so it removes tells without smoothing away your hooks.
+
 8. **linkedin-final-check** — the last gate on the one variant you picked: a SHIP/HOLD verdict that it's publish-ready and free of AI slop.
 9. **linkedin-meme-picker** — once a post clears the final check, turn it into a scroll-stopping visual: maps your hook and the sacred cow you poke to a fitting memegen.link template, verifies the image actually renders, and hands back a meme board (a lead plus alts).
 
