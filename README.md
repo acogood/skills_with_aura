@@ -31,13 +31,16 @@ output to your machine, and the later skills read those files.
 **Per post**
 
 3. **talking-point-extractor** — turn a transcript, article, or notes into post-ready angles.
-4. **post-enricher** — add a story, example, or verifiable stat so a point actually lands.
-5. **linkedin-post-writer** — draft the post in 2–3 variants, matched to your Style Card + audience.
-6. **linkedin-post-reviewer** — a blunt, opinionated critique against what actually performs, before you publish.
+4. **talking-point-curator** — pick the angles that fit your chosen lane and rank them into a post queue.
+5. **post-enricher** — add a story, example, or verifiable stat so a point actually lands.
+6. **linkedin-post-writer** — draft the post in 2–3 variants, matched to your Style Card + audience.
+7. **linkedin-post-reviewer** — a blunt, opinionated critique against what actually performs, before you publish.
+8. **linkedin-final-check** — the last gate on the one variant you picked: a SHIP/HOLD verdict that it's publish-ready and free of AI slop.
+9. **linkedin-meme-picker** — once a post clears the final check, turn it into a scroll-stopping visual: maps your hook and the sacred cow you poke to a fitting memegen.link template, verifies the image actually renders, and hands back a meme board (a lead plus alts).
 
 **Anytime**
 
-7. **lookalike-content** — mine a pile of winning posts for what's working and generate fresh lookalike ideas.
+10. **lookalike-content** — mine a pile of winning posts for what's working and generate fresh lookalike ideas.
 
 ## Where your work is saved
 
