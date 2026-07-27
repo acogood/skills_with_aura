@@ -134,6 +134,37 @@ the user knows why their card wasn't copied literally.
 - CTA is a **specific open question** tied to the post's argument — never "Agree?" / "Thoughts?",
   never an emoji-only vote.
 
+**Sound human (no AI tells). This is what keeps a draft from reading as slop. Two tiers:**
+
+*Rendering bugs (always fix; these break on LinkedIn no matter the voice):*
+- **No literal `**bold**` or `_italics_` in the body.** LinkedIn shows the raw asterisks/underscores, so
+  they read as a formatting bug, not emphasis.
+- **Straight quotes only** (`"` `'`), never curly (`“ ” ‘ ’`).
+- **Max one emoji** (zero is safer); no emoji section headers, no hashtag stuffing.
+
+*Cadence tells (contextual; signs of machine writing, but weigh against the style card, don't auto-fix a
+single instance):*
+- **Em/en dashes** (`—` `–`) are a tell only when they become the *default* connector in an even, AI-ish
+  rhythm. They are not slop on their own. If the style card names dashes as a device (many voices use them),
+  keep the ones that serve a genuine aside and thin out only the mechanical pile-up.
+- **One reframe on repeat.** The antithesis move ("it's not X, it's Y" / "you can't A, you can B") is sharp
+  once. When the *same* construction carries the whole post, reworded three, four, five times, it reads as
+  machine-written. Vary it.
+- **Forced rule-of-three** where the third item is filler padding the pattern (real data or steps are fine).
+- **A run of clipped one-line fragments** long enough to read as engineered drama rather than emphasis. One
+  or two short lines is native LinkedIn rhythm; let others breathe longer.
+- **Ceremony / signposting** — "the real question is", "at its core", "here's the thing", "let's dive in".
+- **Aphorism formulas** — "X is the currency of Y", "X is a testament to". Say the concrete thing.
+- **Filler / hedging** — "in order to" → "to"; "it's important to note that" → cut; trim stacked qualifiers.
+- **Vague attribution** — "studies show" / "experts agree" with no named source (fabricated numbers are
+  already barred by the never-invent-proof rule).
+
+These flag *patterns*, never a word list, and defer to the style card. A deliberate register (skeptical
+authority, contrarian, numbers-as-authority), a single sharp reframe, specific numbers, named sources, and
+dashes-as-signature are human signals to keep. `linkedin-post-reviewer` and `linkedin-final-check` carry
+this same two-tier list for their own jobs (flagging, gating); it is duplicated on purpose so each skill
+stays self-contained, so change one, change all three.
+
 **Length:** a tight LinkedIn post, not an essay. Most land between ~120 and ~250 words.
 
 ## Selecting templates
@@ -155,6 +186,12 @@ real material. A template **qualifies** only if every required item can be satis
 talking point + enrichment. If a required beat would need an invented number, a fabricated result, or a
 quote nobody said, **disqualify** the template — do not write it. This gate is what keeps templates as
 scaffolds and preserves the never-invent-proof promise.
+
+A checklist item that requires **first-person or personally-observed** experience (e.g. "a divergence the
+writer has actually seen", "a pattern you've observed in clients", "a recurring question people ask you")
+counts as **unmet** unless the user actually has it. Do not satisfy it with a hypothetical dressed as a real
+anecdote. Either ground it in real experience the user supplies, reframe the beat as *explicitly* archetypal
+("picture two marketers…", not "a year later one was let go"), or disqualify the template.
 
 **3. Rank and select.** Rank the qualifying templates by fit — intent-match strength plus proof
 completeness (how fully the material fills the beats). Take the **top 2–3**. Use category affinity to
@@ -222,6 +259,9 @@ enrichment or the talking point — do not invent proof.
 Run the embedded rules over **every variant** and fix any failure before presenting:
 - [ ] Hook 8-10 words, two keywords, "how I"/number frame, curiosity gap, rehook on line 2?
 - [ ] Body F-pattern, ≤3 mobile lines, no italics, no hashtags, ≤1 emoji, no body links?
+- [ ] **Sounds human**: no literal `**`/`_` or curly quotes in the body; dashes serve the voice (not an AI
+      pile-up); no single reframe carrying the whole post; no forced triads, no engineered fragment run, no
+      ceremony/signposting/filler/vague-attribution?
 - [ ] Power-ending closes the hook's loop? CTA is a specific open question (not "Agree?", not emoji vote)?
 - [ ] Voice matches the style card (within platform rules)? Vocabulary matches the audience profile?
 - [ ] Every stat/quote/example traces to enrichment or the talking point — nothing fabricated?

@@ -1,6 +1,6 @@
 ---
 name: linkedin-post-reviewer
-description: "Review LinkedIn drafts — a full weekly batch, a single post, one or several hook lines, or an open strategic question — against an embedded best-practice checklist (hook discipline, scannable F-pattern formatting, posting cadence, engagement protocol, content-mix balance) and return a blunt, specific, opinionated critique with concrete rewrites. Use when the user says 'review this LinkedIn post', 'check my LinkedIn draft', 'is this hook strong enough', 'review my LinkedIn week', 'tighten this post for LinkedIn', or 'should I post this on LinkedIn'. Not for drafting new posts from scratch (that's the writing skills) or for reviewing non-LinkedIn copy like blogs, emails, or ads — it only reviews LinkedIn drafts."
+description: "Review LinkedIn drafts — a full weekly batch, a single post, one or several hook lines, or an open strategic question — against an embedded best-practice checklist (hook discipline, scannable F-pattern formatting, AI-slop / human-voice tells, posting cadence, engagement protocol, content-mix balance) and return a blunt, specific, opinionated critique with concrete rewrites. Use when the user says 'review this LinkedIn post', 'check my LinkedIn draft', 'is this hook strong enough', 'review my LinkedIn week', 'tighten this post for LinkedIn', or 'is this lane too niche'. Not for drafting new posts from scratch (that's the writing skills), not for the final pre-publish go/no-go on the one post you've chosen (that's linkedin-final-check), and not for reviewing non-LinkedIn copy like blogs, emails, or ads — it only reviews LinkedIn drafts."
 argument-hint: <draft, hook, weekly batch, or a strategic question>
 ---
 
@@ -68,8 +68,10 @@ These are the rules the review applies. They are general LinkedIn best practices
 | **Objection-led selling** | Pull real objections from client/prospect conversations and answer them in content. Sell by resolving doubts, not by pitching. |
 | **Power ending + engage CTA** | The last line closes the loop the hook opened. The CTA is a specific open question — never "Agree?" / "Thoughts?". |
 | **Templates as scaffolds** | Reuse the structural bones of what works; change everything else. A copy-pasted template reads as a copy-pasted template. |
+| **Sound human (no AI slop)** | Two tiers. Rendering bugs always fail: literal `**`/`_` in the body, curly quotes, emoji/hashtag spam. Cadence tells are contextual and defer to the style card: dashes only when they pile into an AI rhythm (a dash-signature voice keeps them), one reframe carrying the whole post, forced triads, engineered fragment runs, ceremony/aphorism/filler/vague-attribution. Flags *patterns*, never a banned-word list. |
 
 > **Note:** Drafts from `linkedin-post-writer` may now be template-derived — apply the "templates as scaffolds" rule to check the structure was filled with genuine voice and proof, not copy-pasted.
+> **Note:** The "sound human" rule is the same two-tier AI-slop list the writer avoids and `linkedin-final-check` gates on at publish time — enforce cadence tells as *pattern* checks that defer to the style card, and only the rendering bugs as hard fails.
 
 When a review needs to weigh depth-of-content choices, reason from the depth gradient above. When it
 touches images or carousels, reason from the visual-hook formats (tweet-style screenshots, personal
@@ -158,6 +160,24 @@ no italics, no "Agree?"/"Thoughts?" CTAs.
 - [ ] One-liners ≤8–10 words. No jargon a reader would have to Google.
 - [ ] Power-ending closes the loop the hook opened.
 - [ ] CTA-to-engage: a specific open question. Never "Agree?" / "Thoughts?".
+
+**AI-slop tells (drafts) — two tiers.**
+
+Rendering bugs (hard fails; they break on LinkedIn regardless of voice):
+- [ ] No literal `**bold**` / `_italics_` in the body (LinkedIn shows the raw characters).
+- [ ] Straight quotes only, no curly `“ ” ‘ ’`. Max one emoji, no emoji headers, no hashtag stuffing.
+
+Cadence tells (contextual; flag as patterns, weigh against the style card, don't fail a single instance):
+- [ ] Em/en dashes only when they pile up as the default connector in an even AI cadence. If the style card
+      names dashes as a device, keep the ones that serve an aside — flag only the mechanical pile-up.
+- [ ] The same reframe ("not X, it's Y" / "you can't A, you can B") carrying the post — reworded three,
+      four, five times still counts. One or two is a sharp move; more reads as machine-written.
+- [ ] Forced rule-of-three with a filler third item. A run of clipped one-line fragments long enough to read
+      as engineered drama (one or two short lines is fine and native to LinkedIn).
+- [ ] Ceremony ("the real question is", "at its core"), signposting ("let's dive in"), aphorism formulas
+      ("X is the currency of Y", "X is a testament to"), filler/hedging, vague attribution ("studies show").
+- [ ] This is a *pattern* check that defers to the style card — NOT a banned-word list; it does not flag
+      "leverage"/"unlock"/"transform" (that boundary below still holds).
 
 **Cadence + engagement (weekly playbooks):**
 - [ ] 4–7 posts/week is the target. Below 4 is only OK with a *named* constraint (empty content pipeline,
