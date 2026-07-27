@@ -369,3 +369,12 @@ Present both files and provide a summary:
 **Target creator has very little public content (Mode 3):** If we can't gather enough samples from the target creator, tell the user what we found and suggest alternatives — a different creator, uploading samples manually, or switching to Mode 2.
 
 **The client's existing style is weak (Mode 1):** If the analysis reveals inconsistent voice, heavy jargon, or generic corporate tone, flag it honestly in the delivery. Suggest Mode 2 or Mode 3 for a stronger foundation.
+
+## API Integration Summary
+
+| Need | How |
+|---|---|
+| **Finding indexed content** (LinkedIn/X posts, articles) | Built-in `WebSearch` to find sources → `WebFetch` the top results to read them → confirm the wording on the page → cite real URLs |
+| **Reading a specific page** (blog, newsletter archive, profile) | Built-in `WebFetch` on the named URL |
+
+**Use the built-in `WebSearch`/`WebFetch` tools, and confirm each sample's wording on its own source page before relying on it.** No API keys are required — the skill runs with zero keys. Built-in `WebFetch` reads a known URL but does not crawl/discover a site, so ask the user for specific links when sample discovery falls short. Do NOT create alternative research scripts.

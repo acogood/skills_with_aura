@@ -439,4 +439,10 @@ content-workspace/
         └── lookalike-ideas-YYYY-MM-DD-[platform].md
 ```
 
-**Use the built-in `WebSearch`/`WebFetch` tools, and verify each cited trend/stat on its own source page before using it.** No API keys are required. Do NOT create alternative research scripts.
+## API Integration Summary
+
+| Need | How |
+|---|---|
+| **Trending-topic research** (Phase 3) | Built-in `WebSearch` to find sources → `WebFetch` the top 1-3 to read them → verify each cited trend/stat on its page → synthesize and cite real URLs with an access date |
+
+**Use the built-in `WebSearch`/`WebFetch` tools, and verify each cited trend/stat on its own source page before using it.** No API keys are required — the skill runs with zero keys. Do NOT create alternative research scripts.
