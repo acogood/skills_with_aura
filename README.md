@@ -2,9 +2,60 @@
 
 **English** · [Русский](README.ru.md)
 
-A small set of [Claude Code](https://code.claude.com) skills for marketers and content people:
-research your audience, capture your voice, then turn raw material into LinkedIn (and long-form)
-posts — drafted, enriched, and reviewed. No API keys, no setup beyond Claude Code.
+[Claude Code](https://code.claude.com) skills that turn raw notes, transcripts, and articles into
+LinkedIn posts that sound like you wrote them — researched, structured, drafted, and reviewed on
+your machine. No API keys, no accounts, nothing uploaded.
+
+![A finished draft pasted into LinkedIn's composer, then broken down beat by beat: hook, old way vs new way, everyday analogy, the flip, first-person proof, open question CTA](assets/demo.gif)
+
+*One paste into the composer — every beat of the "Old Way vs New Way" template accounted for.
+(Source for the animation lives in [`demo/`](demo/), rendered with Remotion.)*
+
+## The pipeline
+
+```mermaid
+flowchart LR
+  src["your notes · transcripts · articles"] --> tpe[talking-point-extractor]
+  tpe --> tpc[talking-point-curator]
+  tw[trend-watcher] -->|fresh angles| tpc
+  tpc --> pe[post-enricher]
+  pe --> lpw[linkedin-post-writer]
+  lpw --> lpr[linkedin-post-reviewer]
+  lpr --> you["you rewrite the flat parts<br/>(+ optional humanizer)"]
+  you --> lfc[linkedin-final-check]
+  lfc --> lmp[linkedin-meme-picker]
+
+  wsa[writing-style-analyzer] --> store[("profiles/<br/>style card · audience")]
+  cap[content-audience-profiler] --> store
+  store --> tpc
+  store --> lpw
+```
+
+**Set up once** — `writing-style-analyzer` distills your best writing into a reusable style card;
+`content-audience-profiler` builds a research-backed profile of who you're writing for. Both save to
+`content-workspace/profiles/` and feed everything downstream.
+
+**Per post** — extract angles from source material, curate them into a queue, enrich the pick with a
+story or verifiable stat, draft 2–3 template-based variants in your voice, get a blunt review, make
+it yours, pass the SHIP/HOLD gate, and optionally turn it into a meme board.
+
+**Anytime** — `trend-watcher` scans Reddit, X, Hacker News, and the web for what's live in your
+audience's world and hands back sourced angles with the take only you can supply.
+
+## The skills
+
+| Skill | What it does |
+|---|---|
+| `writing-style-analyzer` | your best writing in, a reusable style card out |
+| `content-audience-profiler` | a research-backed profile of who you're writing for |
+| `talking-point-extractor` | transcripts, articles, notes → post-ready angles |
+| `talking-point-curator` | ranks angles into a post queue for your lane |
+| `post-enricher` | adds a story, example, or verifiable stat so a point lands |
+| `linkedin-post-writer` | drafts 2–3 variants on proven post templates, in your voice |
+| `linkedin-post-reviewer` | a blunt critique against what actually performs |
+| `linkedin-final-check` | the last SHIP/HOLD gate before you publish |
+| `linkedin-meme-picker` | maps a cleared post to a fitting meme template, returns a meme board |
+| `trend-watcher` | live conversations on Reddit/X/HN → sourced post angles |
 
 ## Use a skill
 
@@ -17,35 +68,13 @@ cp -r skills_with_aura/skills/linkedin-post-writer ~/.claude/skills/   # availab
 # …or scope it to one project:  cp -r skills_with_aura/skills/<name> .claude/skills/
 ```
 
-Then just ask Claude Code for what you want — *"draft a LinkedIn post from these notes"* — and it
-runs the matching skill, or name the skill directly. Take as many as you like.
+Then just ask — *"draft a LinkedIn post from these notes"* — or name the skill directly. Take as
+many as you like; each one works standalone and reads whatever the earlier skills already saved.
 
-## The skills — a suggested order
-
-Run them in whatever order suits you; this is just the flow that tends to work. Each skill saves its
-output to your machine, and the later skills read those files.
-
-**Set up once — your voice & audience**
-
-1. **writing-style-analyzer** — feed it your best writing; it saves a reusable **Style Card**.
-2. **content-audience-profiler** — builds a research-backed **profile of who you're writing for**.
-
-**Per post**
-
-3. **talking-point-extractor** — turn a transcript, article, or notes into post-ready angles.
-4. **talking-point-curator** — pick the angles that fit your chosen lane and rank them into a post queue.
-5. **post-enricher** — add a story, example, or verifiable stat so a point actually lands.
-6. **linkedin-post-writer** — draft the post in 2–3 variants, matched to your Style Card + audience.
-7. **linkedin-post-reviewer** — a blunt, opinionated critique against what actually performs, before you publish.
-
-   **Make it yours before you publish.** Don't ship AI slop — read the post end to end and rewrite the flat parts in your own voice: keep your punchy hooks (they drive the reach), cut the AI tells. For an extra pass, the external **[humanizer](https://github.com/blader/humanizer)** skill (`npx skills add blader/humanizer`) strips signs of AI writing — run it *partially*, so it removes tells without smoothing away your hooks.
-
-8. **linkedin-final-check** — the last gate on the one variant you picked: a SHIP/HOLD verdict that it's publish-ready and free of AI slop.
-9. **linkedin-meme-picker** — once a post clears the final check, turn it into a scroll-stopping visual: maps your hook and the sacred cow you poke to a fitting memegen.link template, verifies the image actually renders, and hands back a meme board (a lead plus alts).
-
-**Anytime**
-
-10. **lookalike-content** — mine a pile of winning posts for what's working and generate fresh lookalike ideas.
+**Make it yours before you publish.** Don't ship AI slop: read the draft end to end and rewrite the
+flat parts in your own voice. For an extra pass, the external
+**[humanizer](https://github.com/blader/humanizer)** skill (`npx skills add blader/humanizer`)
+strips signs of AI writing — run it partially, so it removes tells without smoothing away your hooks.
 
 ## Where your work is saved
 
@@ -55,8 +84,8 @@ your machine:
 ```
 content-workspace/
 ├── profiles/        audience profiles + style cards (shared across skills)
-├── samples/ sources/        your inputs (writing samples, transcripts/articles)
-└── talking-points/ content/ data/        generated angles, drafts, ideas
+├── sources/         your inputs (writing samples, transcripts/articles)
+└── talking-points/ content/        generated angles, queues, drafts, meme boards
 ```
 
 For a video source, paste YouTube's **Show transcript** panel or drop a captions file into
